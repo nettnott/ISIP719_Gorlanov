@@ -20,8 +20,10 @@ switch (option)
         {
             Console.WriteLine("Write ur data in format: 'name'; 'cost'");
             string tupoyvvod = Console.ReadLine();
-            string[] idiotizm = tupoyvvod.Split(new char[] { ';' });
-        }
+            string[] idiotizm = tupoyvvod.Split(';');
+            prod[prod.Length + j] = idiotizm[0].Trim();
+            cost[cost.Length + j] = int.Parse(idiotizm[1].Trim());
+        };
 
     case '2': // stats
 
