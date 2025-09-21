@@ -12,7 +12,7 @@ string[] prod = new string [n];
 
 for (int i = 0; i < n; i++)
 {
-    Console.WriteLine();
+
     Console.WriteLine("Write ur data in format: 'name';'cost'");
     string tupoyvvod = Console.ReadLine();
     string[] idiotizm = tupoyvvod.Split(';');
@@ -35,7 +35,7 @@ void menu()
     Console.WriteLine();
     Console.WriteLine("What do u want to do?");
     Console.WriteLine("Press 1 to see your data, 2 to see stats, 3 to sort by cost");
-    Console.WriteLine("4 to convert money, 5 to search by name, 6 to add more data, 0 to exit");
+    Console.WriteLine("4 to convert money, 5 to search by name, 0 to exit");
     int option = Convert.ToInt32(Console.ReadLine());
 
     switch (option)
@@ -46,7 +46,6 @@ void menu()
             {
                 Console.WriteLine($"{prod[s]} {cost[s]}");
             }
-            Console.WriteLine();
             break;
 
         case 2: // stats
@@ -94,12 +93,10 @@ void menu()
                     Console.WriteLine($"summa = {summa(cost)}");
                     break;
             };
-            Console.WriteLine();
             break;
 
         case 3: // bubble sort
 
-            Console.WriteLine();
             for (int j = 0; j <= cost.Length - 2; j++)
             {
                 for (int i = 0; i <= cost.Length - 2; i++)
@@ -119,42 +116,35 @@ void menu()
             {
                 Console.WriteLine($"{prod[s]} {cost[s]}");
             };
-            Console.WriteLine();
             break;
 
         case 4: // convertation
 
-            Console.WriteLine();
             Console.WriteLine("write your course");
             double course = Convert.ToDouble(Console.ReadLine());
             for (int s = 0; s < prod.Length; s++)
             {
-                Console.WriteLine($"{prod[s]} {cost[s]*course}");
+                Console.WriteLine($"{prod[s]} {cost[s]/course}");
             }
-            Console.WriteLine();
             break;
+
         case 5: // search by name
 
-        case 6: // input
-
-            Console.WriteLine("HOW MUCH POSITIONS DO U WANT TO INPUT (from 2 to 40)");
-            int n = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < n; i++)
+            Console.WriteLine("Vvedite nachalo stroki");
+            string search = Console.ReadLine();
+            for (int i = 0; i < prod.Length; i++)
             {
-                Console.WriteLine("Write ur data in format: 'name';'cost'");
-                string tupoyvvod = Console.ReadLine();
-                string[] idiotizm = tupoyvvod.Split(';');
-                prod[prod.Length + i - 1] = idiotizm[0].Trim();
-                cost[prod.Length + i - 1] = double.Parse(idiotizm[1].Trim());
+                bool result = prod[i].ToLower().Contains(search.ToLower());
+                if (result == true)
+                {
+                    Console.WriteLine($"{prod[i]} {cost[i]}");
+                }
             };
-            Console.WriteLine();
             break;
 
         case 0: // exit
             return;
     };
     menu();
-}
-
+};
 menu();
