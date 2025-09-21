@@ -12,6 +12,7 @@ string[] prod = new string [n];
 
 for (int i = 0; i < n; i++)
 {
+    Console.WriteLine();
     Console.WriteLine("Write ur data in format: 'name';'cost'");
     string tupoyvvod = Console.ReadLine();
     string[] idiotizm = tupoyvvod.Split(';');
@@ -31,6 +32,7 @@ double summa(double[] cost)
 
 void menu()
 {
+    Console.WriteLine();
     Console.WriteLine("What do u want to do?");
     Console.WriteLine("Press 1 to see your data, 2 to see stats, 3 to sort by cost");
     Console.WriteLine("4 to convert money, 5 to search by name, 6 to add more data, 0 to exit");
@@ -122,6 +124,15 @@ void menu()
 
         case 4: // convertation
 
+            Console.WriteLine();
+            Console.WriteLine("write your course");
+            double course = Convert.ToDouble(Console.ReadLine());
+            for (int s = 0; s < prod.Length; s++)
+            {
+                Console.WriteLine($"{prod[s]} {cost[s]*course}");
+            }
+            Console.WriteLine();
+            break;
         case 5: // search by name
 
         case 6: // input
