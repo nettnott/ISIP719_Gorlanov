@@ -17,6 +17,17 @@ for (int i = 0; i < n; i++)
     prod[i] = idiotizm[0].Trim();
     cost[i] = double.Parse(idiotizm[1].Trim());
 };
+
+double summa(double[] cost)
+{
+    double sum = 0;
+    foreach (double c in cost)
+    {
+        sum += c;
+    };
+    return sum;
+};
+
 void menu()
 {
     Console.WriteLine("What do u want to do?");
@@ -44,35 +55,41 @@ void menu()
             {
                 case 1: // average
 
-                    double sum = 0;
-                    foreach (double c in cost)
-                    {
-                        sum += c;
-                    };
-                    double avg = sum / cost.Length;
+                    double avg = summa(cost) / cost.Length;
                     Console.WriteLine($"average = {avg}");
                     break;
 
                 case 2: // max
 
-
+                    double maxon = 0;
+                    foreach (double i in cost)
+                    {
+                        if (i > maxon)
+                        {
+                            maxon = i;
+                        }
+                    };
+                    Console.WriteLine($"max = {maxon}");
                     break; 
 
                 case 3: // min
 
-
+                    double minipig = 99999999999;
+                    foreach (double i in cost)
+                    {
+                        if (i < minipig)
+                        {
+                            minipig = i;
+                        }
+                    };
+                    Console.WriteLine($"min = {minipig}");
                     break;
 
                 case 4: // summa
 
-                    double sum = 0;
-                    foreach (double c in cost)
-                    {
-                        sum += c;
-                    };
-                    Console.WriteLine($"summa = {sum}");
+                    Console.WriteLine($"summa = {summa(cost)}");
                     break;
-            }
+            };
 
             break;
 
