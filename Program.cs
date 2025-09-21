@@ -1,6 +1,22 @@
 ﻿using System;
 using static System.Net.Mime.MediaTypeNames;
 
+Console.WriteLine("это штука для учета расходов");
+
+Console.WriteLine("HOW MUCH POSITIONS DO U WANT TO INPUT (from 2 to 40)");
+int n = Convert.ToInt32(Console.ReadLine());
+
+double[] cost = new double [n];
+string[] prod = new string [n];
+
+for (int i = 0; i < n; i++)
+{
+    Console.WriteLine("Write ur data in format: 'name';'cost'");
+    string tupoyvvod = Console.ReadLine();
+    string[] idiotizm = tupoyvvod.Split(';');
+    prod[i] = idiotizm[0].Trim();
+    cost[i] = double.Parse(idiotizm[1].Trim());
+};
 void menu()
 {
     Console.WriteLine("What do u want to do?");
@@ -19,6 +35,46 @@ void menu()
             break;
 
         case 2: // stats
+
+            Console.WriteLine("What do u want to see?");
+            Console.WriteLine("Press 1 to see average, 2 to see max, 3 to see min, 4 to see sum");
+            int stat = Convert.ToInt32(Console.ReadLine());
+
+            switch (stat)
+            {
+                case 1: // average
+
+                    double sum = 0;
+                    foreach (double c in cost)
+                    {
+                        sum += c;
+                    };
+                    double avg = sum / cost.Length;
+                    Console.WriteLine($"average = {avg}");
+                    break;
+
+                case 2: // max
+
+
+                    break; 
+
+                case 3: // min
+
+
+                    break;
+
+                case 4: // summa
+
+                    double sum = 0;
+                    foreach (double c in cost)
+                    {
+                        sum += c;
+                    };
+                    Console.WriteLine($"summa = {sum}");
+                    break;
+            }
+
+            break;
 
         case 3: // bubble sort
 
@@ -46,24 +102,5 @@ void menu()
     };
     menu();
 }
-
-//main code
-
-Console.WriteLine("это штука для учета расходов");
-
-Console.WriteLine("HOW MUCH POSITIONS DO U WANT TO INPUT (from 2 to 40)");
-int n = Convert.ToInt32(Console.ReadLine());
-
-double[] cost = new double[n];
-string[] prod = new string[n];
-
-for (int i = 0; i < n; i++)
-{
-    Console.WriteLine("Write ur data in format: 'name';'cost'");
-    string tupoyvvod = Console.ReadLine();
-    string[] idiotizm = tupoyvvod.Split(';');
-    prod[i] = idiotizm[0].Trim();
-    cost[i] = double.Parse(idiotizm[1].Trim());
-};
 
 menu();
