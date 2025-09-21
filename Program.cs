@@ -120,11 +120,49 @@ void menu()
 
         case 4: // convertation
 
-            Console.WriteLine("write your course");
-            double course = Convert.ToDouble(Console.ReadLine());
-            for (int s = 0; s < prod.Length; s++)
+            Console.WriteLine();
+            Console.WriteLine("How do you want to convert?");
+            Console.WriteLine("Press 1 to input ur course (rub to smth), 2 to choose from the list");
+            int crsopt = Convert.ToInt32(Console.ReadLine());
+            switch (crsopt)
             {
-                Console.WriteLine($"{prod[s]} {cost[s]/course}");
+                case 1:
+                    Console.WriteLine("write your course");
+                    double course = Convert.ToDouble(Console.ReadLine());
+                    for (int s = 0; s < prod.Length; s++)
+                    {
+                        Console.WriteLine($"{prod[s]} {cost[s] / course}");
+                    };
+                    break ;
+                case 2:
+                    Console.WriteLine("Choose a course");
+                    Console.WriteLine("1 - rub to usd: 90,25; 2 - rub to eur: 98,50; 3 - rub to jpy: 0,59");
+                    int val = Convert.ToInt32(Console.ReadLine());
+                    switch (val)
+                    {
+                        case 1: //to usd
+                            Console.WriteLine("rub to usd");
+                            for (int s = 0; s < prod.Length; s++)
+                            {
+                                Console.WriteLine($"{prod[s]} {cost[s] / 90,25}");
+                            };
+                            break;
+                        case 2: // to eur
+                            Console.WriteLine("rub to eur");
+                            for (int s = 0; s < prod.Length; s++)
+                            {
+                                Console.WriteLine($"{prod[s]} {cost[s] / 98,50}");
+                            };
+                            break;
+                        case 3: // to jpy
+                            Console.WriteLine("rub to jpy");
+                            for (int s = 0; s < prod.Length; s++)
+                            {
+                                Console.WriteLine($"{prod[s]} {cost[s] / 0,59}");
+                            };
+                            break;
+                    }
+                    break ;
             }
             break;
 
