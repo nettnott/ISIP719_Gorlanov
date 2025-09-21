@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using static System.Net.Mime.MediaTypeNames;
 
 Console.WriteLine("это штука для учета расходов");
@@ -38,11 +39,12 @@ void menu()
     switch (option)
     {
         case 1: //see 
-
+            Console.WriteLine();
             for (int s = 0; s < prod.Length; s++)
             {
                 Console.WriteLine($"{prod[s]} {cost[s]}");
             }
+            Console.WriteLine();
             break;
 
         case 2: // stats
@@ -50,7 +52,7 @@ void menu()
             Console.WriteLine("What do u want to see?");
             Console.WriteLine("Press 1 to see average, 2 to see max, 3 to see min, 4 to see sum");
             int stat = Convert.ToInt32(Console.ReadLine());
-
+            Console.WriteLine();
             switch (stat)
             {
                 case 1: // average
@@ -90,10 +92,33 @@ void menu()
                     Console.WriteLine($"summa = {summa(cost)}");
                     break;
             };
-
+            Console.WriteLine();
             break;
 
         case 3: // bubble sort
+
+            Console.WriteLine();
+            for (int j = 0; j <= cost.Length - 2; j++)
+            {
+                for (int i = 0; i <= cost.Length - 2; i++)
+                {
+                    if (cost[i] > cost[i + 1])
+                    {
+                        double temp = cost[i + 1];
+                        string tmp = prod[i+1];
+                        cost[i + 1] = cost[i];
+                        prod[i+1] = prod[i];
+                        cost[i] = temp;
+                        prod[i] = tmp;
+                    }
+                }
+            }
+            for (int s = 0; s < prod.Length; s++)
+            {
+                Console.WriteLine($"{prod[s]} {cost[s]}");
+            };
+            Console.WriteLine();
+            break;
 
         case 4: // convertation
 
@@ -112,6 +137,7 @@ void menu()
                 prod[prod.Length + i - 1] = idiotizm[0].Trim();
                 cost[prod.Length + i - 1] = double.Parse(idiotizm[1].Trim());
             };
+            Console.WriteLine();
             break;
 
         case 0: // exit
