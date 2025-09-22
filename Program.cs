@@ -55,4 +55,6 @@ public class Tvari
     {
         Console.WriteLine($"ID: {ID} | name: {Name} | category: {Category} | price: {Price} | quantity: {Quantity} | is on sklad: {(IsOnSklad ? "yeah" : "no.")}");
     }
+
+
 };
