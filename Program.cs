@@ -29,25 +29,20 @@ public class Tvari
         }
     }
 
-    public enum TvarCategory { tabak, pivo, nenujnoe};
+    public enum TvarCategory { tabak, pivo, nenujnoe };
 
 
-    public Tvari()
+    public Tvari(string name, double price, int quantity, int categoryChoice)
     {
         ID = _nextId++;
-        Console.Write("input name: ");
+        //Console.Write("input name: ");
         Name = Console.ReadLine();
-        Console.Write("input price: ");
+        //Console.Write("input price: ");
         Price = Convert.ToDouble(Console.ReadLine());
-        Console.Write("input quantity: ");
+        //Console.Write("input quantity: ");
         Quantity = Convert.ToInt32(Console.ReadLine());
         IsThere();
 
-        Console.WriteLine("choose category:");
-        Console.WriteLine("1 - Tabak");
-        Console.WriteLine("2 - Pivo");
-        Console.WriteLine("3 - Nenujnoe");
-        int categoryChoice = Convert.ToInt32(Console.ReadLine());
         Category = (TvarCategory)(categoryChoice - 1);
     }
 
@@ -89,5 +84,43 @@ public class Tvari
             return false;
         }
     }
-}
+
+    private static List<Tvari> products = new List<Tvari>();
+
+    public static void AddTvar()
+    {
+        Console.WriteLine("=== adding tvar ===");
+
+        Console.Write("input name: ");
+        string name = Console.ReadLine();
+
+        Console.Write("input price: ");
+        double price = Convert.ToDouble(Console.ReadLine());
+        if (price < 0)
+        {
+            Console.WriteLine("nado normalno!");
+            return;
+        }
+
+        Console.Write("Skolko: ");
+        int quantity = Convert.ToInt32(Console.ReadLine());
+        if (quantity < 0)
+        {
+            Console.WriteLine("normalno nadooo!");
+            return;
+        }
+
+        Console.WriteLine("choose category:");
+        Console.WriteLine("1 - Tabak");
+        Console.WriteLine("2 - Pivo");
+        Console.WriteLine("3 - Nenujnoe");
+        int categoryChoice = Convert.ToInt32(Console.ReadLine());
+
+        var product = new Tvari(name, price, quantity, categoryChoice);
+        products.Add(product);
+
+        Console.WriteLine($"Successfully added! ID: {product.ID}");
+    }
+
+
 };
