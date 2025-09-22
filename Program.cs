@@ -50,10 +50,9 @@ public class Tvari
         int categoryChoice = Convert.ToInt32(Console.ReadLine());
         Category = (TvarCategory)(categoryChoice - 1);
     }
+
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"ID: {ID} | name: {Name} | category: {Category} | price: {Price} | quantity: {Quantity} | is on sklad: {(IsOnSklad ? "yeah" : "no.")}");
+    }
 };
-
-public class MainShit
-{
-    private static List<Tvari> products = new List<Tvari>();
-
-}
