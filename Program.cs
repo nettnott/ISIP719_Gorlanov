@@ -56,5 +56,38 @@ public class Tvari
         Console.WriteLine($"ID: {ID} | name: {Name} | category: {Category} | price: {Price} | quantity: {Quantity} | is on sklad: {(IsOnSklad ? "yeah" : "no.")}");
     }
 
+    public void dobKolvo(int amount)
+    {
+        if (amount > 0)
+        {
+            Quantity += amount;
+            Console.WriteLine($"Successfully addded, new quantity: {Quantity}");
+        }
+        else
+        {
+            Console.WriteLine("Napishite normalno ny emoe!");
+        }
+    }
 
+    public bool delKolvo(int amount)
+    {
+        if (amount <= 0)
+        {
+            Console.WriteLine("Napishite normalno ny emoe!");
+            return false;
+        }
+
+        if (Quantity >= amount)
+        {
+            Quantity -= amount;
+            Console.WriteLine($"Successfully prodano. {Quantity} styki left");
+            return true;
+        }
+        else
+        {
+            Console.WriteLine($"Ny nifiga sebe! a eshche chego! There are only {Quantity} shtyki");
+            return false;
+        }
+    }
+}
 };
