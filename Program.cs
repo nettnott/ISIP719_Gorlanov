@@ -204,16 +204,15 @@ public class Tvari
         else
         {
             Console.Write($"Dostupno {product.Quantity} tvarei. Skoka hotite prodat?");
-        }
+            int amount = Convert.ToInt32(Console.ReadLine());
+            if (amount <= 0)
+            {
+                Console.WriteLine("Napishite normalno!");
+                return;
+            }
 
-        int amount = Convert.ToInt32(Console.ReadLine());
-        if (amount <= 0)
-        {
-            Console.WriteLine("Napishite normalno!");
-            return;
+            product.delKolvo(amount);
         }
-
-        product.delKolvo(amount);
     }
 
     public static void SearchTvar()
