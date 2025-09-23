@@ -5,7 +5,7 @@ using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 
 Console.WriteLine("это штука для учета tovarov");
-
+Tvari.menu();
 public class Tvari
 {
     private static int _nextId = 1;
@@ -36,14 +36,24 @@ public class Tvari
     {
         ID = _nextId++;
         //Console.Write("input name: ");
-        Name = Console.ReadLine();
+        Name = name;
         //Console.Write("input price: ");
-        Price = Convert.ToDouble(Console.ReadLine());
+        Price = price;
         //Console.Write("input quantity: ");
-        Quantity = Convert.ToInt32(Console.ReadLine());
+        Quantity = quantity;
         IsThere();
 
         Category = (TvarCategory)(categoryChoice - 1);
+    }
+
+    private static int choosecategory()
+    {
+        Console.WriteLine("choose category:");
+        Console.WriteLine("1 - Tabak");
+        Console.WriteLine("2 - Pivo");
+        Console.WriteLine("3 - Nenujnoe");
+        int categoryChoice = Convert.ToInt32(Console.ReadLine());
+        return categoryChoice;
     }
 
     public void DisplayInfo()
@@ -127,8 +137,6 @@ public class Tvari
         Console.WriteLine("=== deleting tvar ===");
 
         Console.Write("input ID of the tvar: ");
-        string name = Console.ReadLine();
-
         int id = Convert.ToInt32(Console.ReadLine());
         if (id < 1)
         {
@@ -148,12 +156,10 @@ public class Tvari
         }
     }
 
-    public static void OrderSupply()
+    public static void OrderTvar()
     {
         Console.WriteLine("=== zakazat postavku ===");
         Console.Write("input ID postavki: ");
-
-        Console.Write("input ID: ");
         int id = Convert.ToInt32(Console.ReadLine());
         if (id < 1)
         {
@@ -179,43 +185,43 @@ public class Tvari
         product.dobKolvo(amount);
     }
 
-    // 4. Продать товар
-    public static void SellProduct()
+    public static void SellTvar()
     {
         Console.WriteLine("=== sell tvar ===");
-        Console.Write("input id tvari ");
+        Console.Write("input ID of the tvar: ");
+        string name = Console.ReadLine();
 
-        if (!int.TryParse(Console.ReadLine(), out int id))
+        int id = Convert.ToInt32(Console.ReadLine());
+        if (id < 1)
         {
-            Console.WriteLine("Некорректный ID!");
+            Console.WriteLine("nado normalno!");
             return;
         }
 
         var product = products.FirstOrDefault(p => p.ID == id);
-        if (product == null)
+        if (product != null)
         {
-            Console.WriteLine("Товар не найден!");
+            Console.WriteLine("takoi tvari net");
+        }
+
+        Console.Write($"Dostupno {product.Quantity} tvarei. Skoka hotite prodat?");
+        int amount = Convert.ToInt32(Console.ReadLine());
+        if (amount <= 0)
+        {
+            Console.WriteLine("Napishite normalno!");
             return;
         }
 
-        Console.Write($"Доступное количество: {product.Quantity}. Введите количество для продажи: ");
-        if (!int.TryParse(Console.ReadLine(), out int amount) || amount <= 0)
-        {
-            Console.WriteLine("Некорректное количество!");
-            return;
-        }
-
-        product.SellQuantity(amount);
+        product.delKolvo(amount);
     }
 
-    // 5. Поиск товаров
-    public static void SearchProducts()
+    public static void SearchTvar()
     {
-        Console.WriteLine("\n=== ПОИСК ТОВАРОВ ===");
-        Console.WriteLine("1 - По ID");
-        Console.WriteLine("2 - По названию");
-        Console.WriteLine("3 - По категории");
-        Console.Write("Выберите тип поиска: ");
+        Console.WriteLine("=== poisk tvarei ===");
+        Console.WriteLine("1 - po ID");
+        Console.WriteLine("2 - po name");
+        Console.WriteLine("3 - po categorii");
+        Console.Write("Choose ur path: ");
 
         var choice = Console.ReadLine();
         IEnumerable<Tvari> results = null;
@@ -223,29 +229,35 @@ public class Tvari
         switch (choice)
         {
             case "1":
-                Console.Write("Введите ID: ");
-                if (int.TryParse(Console.ReadLine(), out int id))
+                Console.Write("input ID of the tvar: ");
+                int id = Convert.ToInt32(Console.ReadLine());
+                if (id < 1)
+                {
+                    Console.WriteLine("nado normalno!");
+                    return;
+                }
+                else
                 {
                     results = products.Where(p => p.ID == id);
                 }
                 break;
             case "2":
-                Console.Write("Введите название: ");
+                Console.Write("input name: ");
                 string name = Console.ReadLine();
-                results = products.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
+                results = products.Where(p => p.Name.Contains(name));
                 break;
             case "3":
-                var category = ChooseCategory();
+                var category = (TvarCategory)(choosecategory() - 1);
                 results = products.Where(p => p.Category == category);
                 break;
             default:
-                Console.WriteLine("Некорректный выбор!");
+                Console.WriteLine("napishite normalno");
                 return;
         }
 
         if (results != null && results.Any())
         {
-            Console.WriteLine("\nРезультаты поиска:");
+            Console.WriteLine("resultati:");
             foreach (var product in results)
             {
                 product.DisplayInfo();
@@ -253,14 +265,13 @@ public class Tvari
         }
         else
         {
-            Console.WriteLine("Товары не найдены!");
+            Console.WriteLine("nichego net");
         }
     }
 
-    // 6. Показать все товары
-    public static void ShowAllProducts()
+    public static void ShowAll()
     {
-        Console.WriteLine("\n=== ВСЕ ТОВАРЫ ===");
+        Console.WriteLine("=== sow all tvarei ===");
         if (products.Any())
         {
             foreach (var product in products)
@@ -270,8 +281,49 @@ public class Tvari
         }
         else
         {
-            Console.WriteLine("Товаров нет!");
+            Console.WriteLine("nichego net!");
         }
     }
 
+    public static void menu()
+    {
+        Console.WriteLine("=== menu ===");
+        Console.WriteLine("1 - add tvar");
+        Console.WriteLine("2 - delete tvar");
+        Console.WriteLine("3 - zakazat postavku tvari");
+        Console.WriteLine("4 - sell tvar");
+        Console.WriteLine("5 - search tvar");
+        Console.WriteLine("6 - show tvar");
+        Console.WriteLine("0 - exit");
+        Console.Write("choose ");
+        var choice = Console.ReadLine();
+        switch (choice)
+        {
+            case "1":
+                AddTvar();
+                break;
+            case "2":
+                DelTvar();
+                break;
+            case "3":
+                OrderTvar();
+                break;
+            case "4":
+                SellTvar();
+                break;
+            case "5":
+                SearchTvar();
+                break;
+            case "6":
+                ShowAll();
+                break;
+            case "0":
+                Console.WriteLine("exit");
+                return;
+            default:
+                Console.WriteLine("nado normalno");
+                break;
+        }
+        menu();
+    }
 };
