@@ -97,6 +97,7 @@ public class Tvari
 
     private static List<Tvari> products = new List<Tvari>();
 
+
     public static void AddTvar()
     {
         Console.WriteLine("=== adding tvar ===");
