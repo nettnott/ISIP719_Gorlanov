@@ -189,8 +189,6 @@ public class Tvari
     {
         Console.WriteLine("=== sell tvar ===");
         Console.Write("input ID of the tvar: ");
-        string name = Console.ReadLine();
-
         int id = Convert.ToInt32(Console.ReadLine());
         if (id < 1)
         {
@@ -199,12 +197,15 @@ public class Tvari
         }
 
         var product = products.FirstOrDefault(p => p.ID == id);
-        if (product != null)
+        if (product == null)
         {
             Console.WriteLine("takoi tvari net");
         }
+        else
+        {
+            Console.Write($"Dostupno {product.Quantity} tvarei. Skoka hotite prodat?");
+        }
 
-        Console.Write($"Dostupno {product.Quantity} tvarei. Skoka hotite prodat?");
         int amount = Convert.ToInt32(Console.ReadLine());
         if (amount <= 0)
         {
