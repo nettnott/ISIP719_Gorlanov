@@ -82,36 +82,37 @@ class Program
 
     static void Main()
     {
-        PublicKey static void
-        List<TextStatistics> history = new List<TextStatistics>();
-        Console.WriteLine("if u want to do that shit print 1, if u want to see history print 2, either print 0");
-        string i = Console.ReadLine();
-        switch (i)
+        static void zarabotaipz()
         {
-            case "1":
-                Console.WriteLine("Input text (at least100 simvolow:");
-                string input = Console.ReadLine();
+            List<TextStatistics> history = new List<TextStatistics>();
+            Console.WriteLine("if u want to do that shit print 1, if u want to see history print 2, either print 0");
+            string i = Console.ReadLine();
+            switch (i)
+            {
+                case "1":
+                    Console.WriteLine("Input text (at least100 simvolow:");
+                    string input = Console.ReadLine();
 
-                if (input.Length < 100)
+                    if (input.Length < 100)
                     {
                         Console.WriteLine("Dlinnee nado");
-                }
+                    }
 
-                TextStatistics result = AnalyzeText(input);
-                history.Add(result);
+                    TextStatistics result = AnalyzeText(input);
+                    history.Add(result);
 
-                result.Print();
-                break;
-            case "2":
-                foreach(TextStatistics g in  history)
-                {
-                    Console.WriteLine(g);
-                }
-                break;
-            case "0":
-                break;
-        }
-        Main();
-       
+                    result.Print();
+                    break;
+                case "2":
+                    foreach (TextStatistics g in history)
+                    {
+                        Console.WriteLine(g);
+                    }
+                    break;
+                case "0":
+                    break;
+            }
+            Main();
+        };       
     }
 }
