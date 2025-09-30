@@ -25,7 +25,7 @@ double summa(double[] cost)
     double sum = 0;
     foreach (double c in cost)
     {
-        sum += c;
+        sum += c;    
     };
     return sum;
 };
