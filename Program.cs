@@ -112,7 +112,7 @@ class Program
                 case "0":
                     break;
             }
-            Main();
+            zarabotaipz();
         };       
     }
 }
