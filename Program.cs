@@ -107,7 +107,7 @@ class Program
                 case "2":
                     foreach (TextStatistics g in history)
                     {
-                        Console.WriteLine(g);
+                        Console.WriteLine(history);
                     }
                     break;
                 case "0":
