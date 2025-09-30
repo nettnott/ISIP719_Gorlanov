@@ -82,6 +82,7 @@ class Program
 
     static void Main()
     {
+        zarabotaipz();
         static void zarabotaipz()
         {
             List<TextStatistics> history = new List<TextStatistics>();
