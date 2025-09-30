@@ -82,38 +82,46 @@ class Program
 
     static void Main()
     {
-        zarabotaipz();
-        static void zarabotaipz()
+        List<TextStatistics> history = new List<TextStatistics>();
+
+        while (true)
         {
-            List<TextStatistics> history = new List<TextStatistics>();
-            Console.WriteLine("if u want to do that shit print 1, if u want to see history print 2, either print 0");
-            string i = Console.ReadLine();
-            switch (i)
+            Console.WriteLine("If u want to do that shit print 1, if u want to see history print 2, either print 0");
+            string input = Console.ReadLine();
+
+            switch (input)
             {
                 case "1":
-                    Console.WriteLine("Input text (at least100 simvolow:");
-                    string input = Console.ReadLine();
+                    Console.WriteLine("Input text (at least 100 simvolow):");
+                    string text = Console.ReadLine();
 
-                    if (input.Length < 100)
+                    if (text.Length < 100)
                     {
-                        Console.WriteLine("Dlinnee nado");
+                        Console.WriteLine("Dlinnee nado! Need at least 100 characters.");
+                        continue;
                     }
 
-                    TextStatistics result = AnalyzeText(input);
+                    TextStatistics result = AnalyzeText(text);
                     history.Add(result);
-
                     result.Print();
                     break;
+
                 case "2":
-                    foreach (TextStatistics g in history)
+                    Console.WriteLine("History of analyses:");
+                    for (int i = 0; i < history.Count; i++)
                     {
-                        Console.WriteLine(history);
+                        Console.WriteLine($"Analysis #{i + 1}:");
+                        history[i].Print();
                     }
                     break;
+
                 case "0":
+                    return;
+
+                default:
+                    Console.WriteLine("Neprevilno pishite normalno");
                     break;
             }
-            zarabotaipz();
-        };       
+        }
     }
 }
