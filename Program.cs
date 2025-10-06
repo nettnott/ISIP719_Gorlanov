@@ -148,53 +148,37 @@ public class kNIGGi
         }
     }
 
-    public static void ShowAll()
-    {
-        Console.WriteLine("=== sow all tvarei ===");
-        if (products.Any())
-        {
-            foreach (var product in products)
-            {
-                product.DisplayInfo();
-            }
-        }
-        else
-        {
-            Console.WriteLine("nichego net!");
-        }
-    }
-
     public static void menu()
     {
-        Console.WriteLine("=== menu ===");
-        Console.WriteLine("1 - add tvar");
-        Console.WriteLine("2 - delete tvar");
-        Console.WriteLine("3 - zakazat postavku tvari");
-        Console.WriteLine("4 - sell tvar");
-        Console.WriteLine("5 - search tvar");
-        Console.WriteLine("6 - show tvar");
+        Console.WriteLine("menu");
+        Console.WriteLine("1 - add kniggy");
+        Console.WriteLine("2 - delete kniggy");
+        Console.WriteLine("3 - search kniggy");
+        Console.WriteLine("4 - sort kniggi");
+        Console.WriteLine("5 - show the cheapest and the most expensive ones");
+        Console.WriteLine("6 - group by author");
         Console.WriteLine("0 - exit");
         Console.Write("choose ");
         var choice = Console.ReadLine();
         switch (choice)
         {
             case "1":
-                AddTvar();
+                AddKNIGGy();
                 break;
             case "2":
-                DelTvar();
+                DelKNIGGy();
                 break;
             case "3":
-                OrderTvar();
+                SearchKNIGGy();
                 break;
             case "4":
-                SellTvar();
+                SortKniggi();
                 break;
             case "5":
-                SearchTvar();
+                TheMost();
                 break;
             case "6":
-                ShowAll();
+                GroupByAuthor();
                 break;
             case "0":
                 Console.WriteLine("exit");
