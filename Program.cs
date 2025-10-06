@@ -23,15 +23,11 @@ public class kNIGGi
     public kNIGGi(string name, string author, double price, int age, int genreChoice)
     {
         ID = _nextId++;
-        //Console.Write("input name: ");
         Name = name;
-        //Console.Write("input price: ");
+        Author = author;
         Price = price;
-        //Console.Write("input quantity: ");
-        Quantity = quantity;
-        IsThere();
-
-        genre = (tipOfkNIGGa)(genreChoice - 1);
+        Age = age;
+        Genre = (tipOfkNIGGa)(genreChoice - 1);
     }
 
     private static int choosegenre()
@@ -47,6 +43,6 @@ public class kNIGGi
 
     public void DisplayInfo()
     {
-        Console.WriteLine($"ID: {ID} | name: {Name} | category: {Category} | price: {Price} | quantity: {Quantity} | is on sklad: {(IsOnSklad ? "yeah" : "no.")}");
+        Console.WriteLine($"ID: {ID} | name: {Name} | author: {Author} | genre: {Genre} | price: {Price} | year of publishing: {Age}");
     }
 }
