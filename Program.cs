@@ -198,7 +198,22 @@ public class kNIGGi
 
     public static void TheMost()
     {
-
+        double maxon = 0;
+        double minipig = 0;
+        var prices = kniggis.Select(p => p.Price).ToList();
+        foreach (double i in prices)
+        {
+            if (i > maxon)
+            {
+                maxon = i;
+            }
+            if (i < minipig)
+            {
+                minipig = i;
+            }
+        }
+        Console.WriteLine($"knigga with max price {kniggis.Where(p => p.Price == maxon)}");
+        Console.WriteLine($"knigga with min price {kniggis.Where(p => p.Price == minipig)}");
     }
     public static void GroupByAuthor() 
     {
