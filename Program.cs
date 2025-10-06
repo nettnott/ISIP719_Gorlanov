@@ -148,6 +148,20 @@ public class kNIGGi
         }
     }
 
+    public static void SortKniggi()
+    {
+
+    }
+
+    public static void TheMost()
+    {
+
+    }
+    public static void GroupByAuthor() 
+    {
+
+    }
+
     public static void menu()
     {
         Console.WriteLine("menu");
