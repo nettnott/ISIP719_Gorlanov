@@ -83,11 +83,11 @@ public class kNIGGi
         Console.WriteLine($"Successfully added! ID: {knigga.ID}");
     }
 
-    public static void DelTvar()
+    public static void DelKNIGGy()
     {
-        Console.WriteLine("=== deleting tvar ===");
+        Console.WriteLine("deleting kniggy");
 
-        Console.Write("input ID of the tvar: ");
+        Console.Write("input ID of the book: ");
         int id = Convert.ToInt32(Console.ReadLine());
         if (id < 1)
         {
@@ -95,15 +95,15 @@ public class kNIGGi
             return;
         }
 
-        var product = products.FirstOrDefault(p => p.ID == id);
-        if (product != null)
+        var knigga = kniggis.FirstOrDefault(p => p.ID == id);
+        if (kniggis != null)
         {
-            products.Remove(product);
-            Console.WriteLine("Tvari bolshe net!");
+            kniggis.Remove(knigga);
+            Console.WriteLine("Kniggi bolshe net!");
         }
         else
         {
-            Console.WriteLine("takoi tvari net");
+            Console.WriteLine("takoi kniggi net");
         }
     }
 
