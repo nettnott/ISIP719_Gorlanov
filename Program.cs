@@ -78,7 +78,7 @@ public class kNIGGi
         int genreChoice = Convert.ToInt32(Console.ReadLine());
 
         var knigga = new kNIGGi(name, author, price, age, genreChoice);
-        kNIGGi.Add(knigga);
+        kniggis.Add(knigga);
 
         Console.WriteLine($"Successfully added! ID: {knigga.ID}");
     }
