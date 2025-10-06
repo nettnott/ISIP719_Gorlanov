@@ -172,9 +172,10 @@ public class kNIGGi
                     Console.WriteLine(p);
                 break;
             case "2":
-                Console.Write("input author: ");
-                string author = Console.ReadLine();
-                results = kniggis.Where(p => p.Name.Contains(author));
+                results = kniggis.OrderBy(p => p.Age).ToList();
+                Console.WriteLine("Sorted kNIGGies:");
+                foreach (var p in results)
+                    Console.WriteLine(p);
                 break;
             default:
                 Console.WriteLine("napishite normalno");
