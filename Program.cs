@@ -30,7 +30,7 @@ public class kNIGGi
         Genre = (tipOfkNIGGa)(genreChoice - 1);
     }
 
-   /* private static int choosegenre()
+   private static int choosegenre()
     {
         Console.WriteLine("choose genre:");
         Console.WriteLine("1 - Roman");
@@ -39,7 +39,7 @@ public class kNIGGi
         Console.WriteLine("4 - other hren`");
         int genreChoice = Convert.ToInt32(Console.ReadLine());
         return genreChoice;
-    }*/
+    }
 
     public void DisplayInfo()
     {
@@ -70,12 +70,7 @@ public class kNIGGi
             return;
         }
 
-        Console.WriteLine("choose genre:");
-        Console.WriteLine("1 - Roman");
-        Console.WriteLine("2 - Detective");
-        Console.WriteLine("3 - Dark Fantasy");
-        Console.WriteLine("4 - other hren`");
-        int genreChoice = Convert.ToInt32(Console.ReadLine());
+        choosegenre();
 
         var knigga = new kNIGGi(name, author, price, age, genreChoice);
         kniggis.Add(knigga);
@@ -107,4 +102,107 @@ public class kNIGGi
         }
     }
 
+    public static void SearchKNIGGy()
+    {
+        Console.WriteLine("poisk knigg");
+        Console.WriteLine("1 - po name");
+        Console.WriteLine("2 - po autor");
+        Console.WriteLine("3 - po genry");
+        Console.Write("Choose ur path: ");
+
+        var choice = Console.ReadLine();
+        IEnumerable<kNIGGi> results = null;
+
+        switch (choice)
+        {
+            case "1":
+                Console.Write("input name of the knigga: ");
+                string name = Console.ReadLine();
+                results = kniggis.Where(p => p.Name.Contains(name));
+                break;
+            case "2":
+                Console.Write("input author: ");
+                string author = Console.ReadLine();
+                results = kniggis.Where(p => p.Name.Contains(author));
+                break;
+            case "3":
+                var genre = (tipOfkNIGGa)(choosegenre() - 1);
+                results = kniggis.Where(p => p.Genre == genre);
+                break;
+            default:
+                Console.WriteLine("napishite normalno");
+                return;
+        }
+
+        if (results != null && results.Any())
+        {
+            Console.WriteLine("resultati:");
+            foreach (var product in results)
+            {
+                product.DisplayInfo();
+            }
+        }
+        else
+        {
+            Console.WriteLine("nichego net");
+        }
+    }
+
+    public static void ShowAll()
+    {
+        Console.WriteLine("=== sow all tvarei ===");
+        if (products.Any())
+        {
+            foreach (var product in products)
+            {
+                product.DisplayInfo();
+            }
+        }
+        else
+        {
+            Console.WriteLine("nichego net!");
+        }
+    }
+
+    public static void menu()
+    {
+        Console.WriteLine("=== menu ===");
+        Console.WriteLine("1 - add tvar");
+        Console.WriteLine("2 - delete tvar");
+        Console.WriteLine("3 - zakazat postavku tvari");
+        Console.WriteLine("4 - sell tvar");
+        Console.WriteLine("5 - search tvar");
+        Console.WriteLine("6 - show tvar");
+        Console.WriteLine("0 - exit");
+        Console.Write("choose ");
+        var choice = Console.ReadLine();
+        switch (choice)
+        {
+            case "1":
+                AddTvar();
+                break;
+            case "2":
+                DelTvar();
+                break;
+            case "3":
+                OrderTvar();
+                break;
+            case "4":
+                SellTvar();
+                break;
+            case "5":
+                SearchTvar();
+                break;
+            case "6":
+                ShowAll();
+                break;
+            case "0":
+                Console.WriteLine("exit");
+                return;
+            default:
+                Console.WriteLine("nado normalno");
+                break;
+        }
+        menu();
+    }
 }
