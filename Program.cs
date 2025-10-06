@@ -49,7 +49,7 @@ public class kNIGGi
     private static List<kNIGGi> kniggis = new List<kNIGGi>();
 
 
-    public static void AddTvar()
+    public static void AddKNIGGy()
     {
         Console.WriteLine("adding a kNIGGy");
 
