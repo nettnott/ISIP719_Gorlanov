@@ -137,9 +137,9 @@ public class kNIGGi
         if (results != null && results.Any())
         {
             Console.WriteLine("resultati:");
-            foreach (var product in results)
+            foreach (var kniggi in results)
             {
-                product.DisplayInfo();
+                kniggi.DisplayInfo();
             }
         }
         else
