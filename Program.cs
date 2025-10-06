@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 Console.WriteLine("eto shtuka dly kNIGG");
-
+kNIGGi.menu();
 public class kNIGGi
 {
     private static int _nextId = 1;
@@ -70,7 +70,12 @@ public class kNIGGi
             return;
         }
 
-        choosegenre();
+        Console.WriteLine("choose genre:");
+        Console.WriteLine("1 - Roman");
+        Console.WriteLine("2 - Detective");
+        Console.WriteLine("3 - Dark Fantasy");
+        Console.WriteLine("4 - other hren`");
+        int genreChoice = Convert.ToInt32(Console.ReadLine());
 
         var knigga = new kNIGGi(name, author, price, age, genreChoice);
         kniggis.Add(knigga);
@@ -150,7 +155,44 @@ public class kNIGGi
 
     public static void SortKniggi()
     {
+        Console.WriteLine("sort knigg");
+        Console.WriteLine("1 - po name");
+        Console.WriteLine("2 - po year");
+        Console.Write("Choose ur path: ");
 
+        var choice = Console.ReadLine();
+        IEnumerable<kNIGGi> results = null;
+
+        switch (choice)
+        {
+            case "1":
+                results = kniggis.OrderBy(p => p.Name).ToList();
+                Console.WriteLine("Sorted kNIGGies:");
+                foreach (var p in results)
+                    Console.WriteLine(p);
+                break;
+            case "2":
+                Console.Write("input author: ");
+                string author = Console.ReadLine();
+                results = kniggis.Where(p => p.Name.Contains(author));
+                break;
+            default:
+                Console.WriteLine("napishite normalno");
+                return;
+        }
+
+        if (results != null && results.Any())
+        {
+            Console.WriteLine("resultati:");
+            foreach (var kniggi in results)
+            {
+                kniggi.DisplayInfo();
+            }
+        }
+        else
+        {
+            Console.WriteLine("nichego net");
+        }
     }
 
     public static void TheMost()
@@ -203,4 +245,5 @@ public class kNIGGi
         }
         menu();
     }
+
 }
