@@ -1,188 +1,52 @@
 ﻿using System;
 using System.Collections;
+using System.Diagnostics;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 Console.WriteLine("eto shtuka dly kNIGG");
 
-Console.WriteLine("HOW MUCH POSITIONS DO U WANT TO INPUT (from 2 to 40)");
-int n = Convert.ToInt32(Console.ReadLine());
-
-double[] cost = new double [n];
-string[] prod = new string [n];
-
-for (int i = 0; i < n; i++)
+public class kNIGGi
 {
+    private static int _nextId = 1;
 
-    Console.WriteLine("Write ur data in format: 'name';'cost'");
-    string tupoyvvod = Console.ReadLine();
-    string[] idiotizm = tupoyvvod.Split(';');
-    prod[i] = idiotizm[0].Trim();
-    cost[i] = double.Parse(idiotizm[1].Trim());
-};
+    public int ID;
+    public string Name;
+    public string Author;
+    public tipOfkNIGGa Genre;
+    public int Age;
+    public double Price;
 
-double summa(double[] cost)
-{
-    double sum = 0;
-    foreach (double c in cost)
+    public enum tipOfkNIGGa { roman, detective, darkfantasy, hren };
+
+
+    public kNIGGi(string name, string author, double price, int age, int genreChoice)
     {
-        sum += c;    
-    };
-    return sum;
-};
+        ID = _nextId++;
+        //Console.Write("input name: ");
+        Name = name;
+        //Console.Write("input price: ");
+        Price = price;
+        //Console.Write("input quantity: ");
+        Quantity = quantity;
+        IsThere();
 
-void menu()
-{
-    Console.WriteLine();
-    Console.WriteLine("What do u want to do?");
-    Console.WriteLine("Press 1 to see your data, 2 to see stats, 3 to sort by cost");
-    Console.WriteLine("4 to convert money, 5 to search by name, 0 to exit");
-    int option = Convert.ToInt32(Console.ReadLine());
+        genre = (tipOfkNIGGa)(genreChoice - 1);
+    }
 
-    switch (option)
+    private static int choosegenre()
     {
-        case 1: //see 
-            Console.WriteLine();
-            for (int s = 0; s < prod.Length; s++)
-            {
-                Console.WriteLine($"{prod[s]} {cost[s]}");
-            }
-            break;
+        Console.WriteLine("choose genre:");
+        Console.WriteLine("1 - Roman");
+        Console.WriteLine("2 - Detective");
+        Console.WriteLine("3 - Dark Fantasy");
+        Console.WriteLine("4 - other hren`");
+        int genreChoice = Convert.ToInt32(Console.ReadLine());
+        return genreChoice;
+    }
 
-        case 2: // stats
-
-            Console.WriteLine("What do u want to see?");
-            Console.WriteLine("Press 1 to see average, 2 to see max, 3 to see min, 4 to see sum");
-            int stat = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine();
-            switch (stat)
-            {
-                case 1: // average
-
-                    double avg = summa(cost) / cost.Length;
-                    Console.WriteLine($"average = {avg}");
-                    break;
-
-                case 2: // max
-
-                    double maxon = 0;
-                    foreach (double i in cost)
-                    {
-                        if (i > maxon)
-                        {
-                            maxon = i;
-                        }
-                    };
-                    Console.WriteLine($"max = {maxon}");
-                    break; 
-
-                case 3: // min
-
-                    double minipig = 99999999999;
-                    foreach (double i in cost)
-                    {
-                        if (i < minipig)
-                        {
-                            minipig = i;
-                        }
-                    };
-                    Console.WriteLine($"min = {minipig}");
-                    break;
-
-                case 4: // summa
-
-                    Console.WriteLine($"summa = {summa(cost)}");
-                    break;
-            };
-            break;
-
-        case 3: // bubble sort
-
-            for (int j = 0; j <= cost.Length - 2; j++)
-            {
-                for (int i = 0; i <= cost.Length - 2; i++)
-                {
-                    if (cost[i] > cost[i + 1])
-                    {
-                        double temp = cost[i + 1];
-                        string tmp = prod[i+1];
-                        cost[i + 1] = cost[i];
-                        prod[i+1] = prod[i];
-                        cost[i] = temp;
-                        prod[i] = tmp;
-                    }
-                }
-            }
-            for (int s = 0; s < prod.Length; s++)
-            {
-                Console.WriteLine($"{prod[s]} {cost[s]}");
-            };
-            break;
-
-        case 4: // convertation
-
-            Console.WriteLine();
-            Console.WriteLine("How do you want to convert?");
-            Console.WriteLine("Press 1 to input ur course (rub to smth), 2 to choose from the list");
-            int crsopt = Convert.ToInt32(Console.ReadLine());
-            switch (crsopt)
-            {
-                case 1:
-                    Console.WriteLine("write your course");
-                    double course = Convert.ToDouble(Console.ReadLine());
-                    for (int s = 0; s < prod.Length; s++)
-                    {
-                        Console.WriteLine($"{prod[s]} {cost[s] / course}");
-                    };
-                    break ;
-                case 2:
-                    Console.WriteLine("Choose a course");
-                    Console.WriteLine("1 - rub to usd: 90,25; 2 - rub to eur: 98,50; 3 - rub to jpy: 0,59");
-                    int val = Convert.ToInt32(Console.ReadLine());
-                    switch (val)
-                    {
-                        case 1: //to usd
-                            Console.WriteLine("rub to usd");
-                            for (int s = 0; s < prod.Length; s++)
-                            {
-                                Console.WriteLine($"{prod[s]} {cost[s] / 90,25}");
-                            };
-                            break;
-                        case 2: // to eur
-                            Console.WriteLine("rub to eur");
-                            for (int s = 0; s < prod.Length; s++)
-                            {
-                                Console.WriteLine($"{prod[s]} {cost[s] / 98,50}");
-                            };
-                            break;
-                        case 3: // to jpy
-                            Console.WriteLine("rub to jpy");
-                            for (int s = 0; s < prod.Length; s++)
-                            {
-                                Console.WriteLine($"{prod[s]} {cost[s] / 0,59}");
-                            };
-                            break;
-                    }
-                    break ;
-            }
-            break;
-
-        case 5: // search by name
-
-            Console.WriteLine("Vvedite nachalo stroki");
-            string search = Console.ReadLine();
-            for (int i = 0; i < prod.Length; i++)
-            {
-                bool result = prod[i].ToLower().Contains(search.ToLower());
-                if (result == true)
-                {
-                    Console.WriteLine($"{prod[i]} {cost[i]}");
-                }
-            };
-            break;
-
-        case 0: // exit
-            return;
-    };
-    menu();
-};
-menu();
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"ID: {ID} | name: {Name} | category: {Category} | price: {Price} | quantity: {Quantity} | is on sklad: {(IsOnSklad ? "yeah" : "no.")}");
+    }
+}
