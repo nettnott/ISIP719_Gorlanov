@@ -2,7 +2,7 @@
 using System.Collections;
 using static System.Net.Mime.MediaTypeNames;
 
-Console.WriteLine("это штука для учета расходов");
+Console.WriteLine("eto shtuka dly kNIGG");
 
 Console.WriteLine("HOW MUCH POSITIONS DO U WANT TO INPUT (from 2 to 40)");
 int n = Convert.ToInt32(Console.ReadLine());
