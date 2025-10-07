@@ -5,9 +5,20 @@ using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 Console.WriteLine("eto shtuka dly kNIGG");
+
 kNIGGi.menu();
 public class kNIGGi
 {
+   var  kniggis = new List<kNIGGi>
+         {
+                new kNIGGi("Goluboe salo", "Nikita Hrushev", 228.0, 1991, 3),
+                new kNIGGi("Vse radi igri", "Nora Sacavich", 5555.0, 2021, 1),
+                new kNIGGi("50 shades of gray", "Kakaya-to Zhenschina", 563.0, 2000, 3),
+                new kNIGGi("Leto v pionerskom galstuke", "Nastiks Mirnaya", 357, 1088, 2),
+                new kNIGGi("Escho cto-to hz", "Vasilii Perminov", 0, 988, 4),
+                new kNIGGi("Moya borba", "Evgenii Simonov", 1488, 1488, 3)
+         };
+
     private static int _nextId = 1;
 
     public int ID;
@@ -45,9 +56,6 @@ public class kNIGGi
     {
         Console.WriteLine($"ID: {ID} | name: {Name} | author: {Author} | genre: {Genre} | price: {Price} | year of publishing: {Age}");
     }
-
-    private static List<kNIGGi> kniggis = new List<kNIGGi>();
-
 
     public static void AddKNIGGy()
     {
