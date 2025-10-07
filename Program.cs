@@ -217,7 +217,11 @@ public class kNIGGi
     }
     public static void GroupByAuthor() 
     {
-
+        var authors = kniggis.GroupBy(p => p.Author);
+        foreach (var author in authors)
+        {
+            Console.WriteLine($"{author.Key} - {author.Count()} kNIGG");
+        }
     }
 
     public static void menu()
