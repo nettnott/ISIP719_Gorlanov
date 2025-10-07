@@ -9,7 +9,7 @@ Console.WriteLine("eto shtuka dly kNIGG");
 kNIGGi.menu();
 public class kNIGGi
 {
-   var  kniggis = new List<kNIGGi>
+   public static List<kNIGGi> kniggis = new List<kNIGGi>
          {
                 new kNIGGi("Goluboe salo", "Nikita Hrushev", 228.0, 1991, 3),
                 new kNIGGi("Vse radi igri", "Nora Sacavich", 5555.0, 2021, 1),
@@ -25,13 +25,13 @@ public class kNIGGi
     public string Name;
     public string Author;
     public tipOfkNIGGa Genre;
-    public string Age;
+    public int Age;
     public double Price;
 
     public enum tipOfkNIGGa { roman, detective, darkfantasy, hren };
 
 
-    public kNIGGi(string name, string author, double price, string age, int genreChoice)
+    public kNIGGi(string name, string author, double price, int age, int genreChoice)
     {
         ID = _nextId++;
         Name = name;
@@ -68,7 +68,7 @@ public class kNIGGi
         string author = Console.ReadLine();
 
         Console.Write("input year of publishing: ");
-        string age = Console.ReadLine();
+        int age = Convert.ToInt32(Console.ReadLine());
 
         Console.Write("input price: ");
         double price = Convert.ToDouble(Console.ReadLine());
@@ -241,6 +241,7 @@ public class kNIGGi
         Console.WriteLine("4 - sort kniggi");
         Console.WriteLine("5 - show the cheapest and the most expensive ones");
         Console.WriteLine("6 - group by author");
+        Console.WriteLine("7 - pokazat vsy hren`");
         Console.WriteLine("0 - exit");
         Console.Write("choose ");
         var choice = Console.ReadLine();
@@ -263,6 +264,12 @@ public class kNIGGi
                 break;
             case "6":
                 GroupByAuthor();
+                break;
+            case "7":
+                foreach (var knigga in kniggis)
+                {
+                    knigga.DisplayInfo();
+                }
                 break;
             case "0":
                 Console.WriteLine("exit");
