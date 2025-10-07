@@ -19,7 +19,7 @@ public class kNIGGi
                 new kNIGGi("Moya borba", "Evgenii Simonov", 1488, 1488, 3)
          };
 
-    private static int _nextId = 1;
+    private static int _nextId = 6;
 
     public int ID;
     public string Name;
@@ -130,13 +130,13 @@ public class kNIGGi
         {
             case "1":
                 Console.Write("input name of the knigga: ");
-                string name = Console.ReadLine();
-                results = kniggis.Where(p => p.Name.Contains(name));
+                string name = Console.ReadLine().ToLower();
+                results = kniggis.Where(p => p.Name.ToLower().Contains(name));
                 break;
             case "2":
                 Console.Write("input author: ");
-                string author = Console.ReadLine();
-                results = kniggis.Where(p => p.Name.Contains(author));
+                string author = Console.ReadLine().ToLower();
+                results = kniggis.Where(p => p.Author.ToLower().Contains(author));
                 break;
             case "3":
                 var genre = (tipOfkNIGGa)(choosegenre() - 1);
@@ -206,23 +206,11 @@ public class kNIGGi
 
     public static void TheMost()
     {
-        double maxon = 0;
-        double minipig = 0;
-        var prices = kniggis.Select(p => p.Price).ToList();
-        foreach (double i in prices)
-        {
-            if (i > maxon)
-            {
-                maxon = i;
-            }
-            if (i < minipig)
-            {
-                minipig = i;
-            }
+            var max = kniggis.OrderByDescending(b => b.Price).First();
+            var min = kniggis.OrderBy(b => b.Price).First();
+            Console.WriteLine($"the most dorogaya: {max}");
+            Console.WriteLine($"the cheapoest: {min}");
         }
-        Console.WriteLine($"knigga with max price {kniggis.Where(p => p.Price == maxon)}");
-        Console.WriteLine($"knigga with min price {kniggis.Where(p => p.Price == minipig)}");
-    }
     public static void GroupByAuthor() 
     {
         var authors = kniggis.GroupBy(p => p.Author);
