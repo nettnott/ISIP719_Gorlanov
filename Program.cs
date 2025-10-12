@@ -470,7 +470,7 @@ public class ConsoleMenu
                 case "0":
                     return;
                 default:
-                    Console.WriteLine("wroooooong");
+                    Console.WriteLine("swrooonggg");
                     break;
             }
             Console.WriteLine("Нажмите любую клавишу...");
