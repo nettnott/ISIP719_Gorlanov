@@ -146,12 +146,12 @@ public class Professor : Person
             ? string.Join(", ", _coursesTeaching.Select(c => c.Name))
             : "no courses";
 
-        return $"Преподаватель ID: {Id}\n" +
-               $"Имя: {Name}\n" +
-               $"Возраст: {Age}\n" +
-               $"Контакт: {ContactInfo}\n" +
-               $"Кафедра: {Department}\n" +
-               $"Специализация: {Specialization}\n" +
-               $"Ведет курсы: {coursesInfo}";
+        return $"Professor ID: {Id}\n" +
+               $"name: {Name}\n" +
+               $"age: {Age}\n" +
+               $"contact info: {ContactInfo}\n" +
+               $"department: {Department}\n" +
+               $"specialization: {Specialization}\n" +
+               $"courses info: {coursesInfo}";
     }
 }
