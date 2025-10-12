@@ -210,22 +210,22 @@ public class Course : IUniversityMember
 
     public string GetInfo()
     {
-        var professorName = _professor?.Name ?? "не назначен";
-        return $"Курс: {Name} ({Id}), {Credits} кредитов, Преподаватель: {professorName}";
+        var professorName = _professor?.Name ?? "no prof";
+        return $"grade: {Name} ({Id}), {Credits} credits, prof: {professorName}";
     }
 
     public string GetDetailedInfo()
     {
-        var professorInfo = _professor?.Name ?? "не назначен";
+        var professorInfo = _professor?.Name ?? "no prof";
         var studentsInfo = _students.Any()
             ? string.Join("\n  ", _students.Select(s => s.Name))
-            : "нет студентов";
+            : "no students";
 
-        return $"Курс ID: {Id}\n" +
-               $"Название: {Name}\n" +
-               $"Описание: {Description}\n" +
-               $"Кредиты: {Credits}\n" +
-               $"Преподаватель: {professorInfo}\n" +
-               $"Студенты ({_students.Count}):\n  {studentsInfo}";
+        return $"course ID: {Id}\n" +
+               $"name: {Name}\n" +
+               $"description: {Description}\n" +
+               $"credits: {Credits}\n" +
+               $"prof: {professorInfo}\n" +
+               $"students ({_students.Count}):\n  {studentsInfo}";
     }
 }
