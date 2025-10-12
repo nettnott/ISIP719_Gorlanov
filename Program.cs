@@ -528,7 +528,7 @@ public class ConsoleMenu
 
     private void ShowAllStudents()
     {
-        Console.WriteLine("\n=== ВСЕ СТУДЕНТЫ ===");
+        Console.WriteLine("\nall students");
         foreach (var student in _university.Students)
         {
             Console.WriteLine(student.GetInfo());
@@ -537,7 +537,7 @@ public class ConsoleMenu
 
     private void ShowAllProfessors()
     {
-        Console.WriteLine("\n=== ВСЕ ПРЕПОДАВАТЕЛИ ===");
+        Console.WriteLine("\nall professors");
         foreach (var professor in _university.Professors)
         {
             Console.WriteLine(professor.GetInfo());
@@ -546,7 +546,7 @@ public class ConsoleMenu
 
     private void ShowAllCourses()
     {
-        Console.WriteLine("\n=== ВСЕ КУРСЫ ===");
+        Console.WriteLine("\nall courses");
         foreach (var course in _university.Courses)
         {
             Console.WriteLine(course.GetInfo());
