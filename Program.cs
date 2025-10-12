@@ -155,3 +155,77 @@ public class Professor : Person
                $"courses info: {coursesInfo}";
     }
 }
+
+public class Course : IUniversityMember
+{
+    private int _id;
+    private string _name;
+    private string _description;
+    private int _credits;
+    private Professor _professor;
+    private List<Student> _students;
+
+    public int Id => _id;
+    public string Name => _name;
+    public string Description => _description;
+    public int Credits => _credits;
+    public Professor Professor => _professor;
+    public IReadOnlyList<Student> Students => _students.AsReadOnly();
+
+    public Course(int id, string name, string description, int credits)
+    {
+        _id = id;
+        _name = name;
+        _description = description;
+        _credits = credits;
+        _students = new List<Student>();
+        _professor = null;
+    }
+
+    public void AssignProfessor(Professor professor)
+    {
+        _professor = professor;
+    }
+
+    public void RemoveProfessor()
+    {
+        _professor = null;
+    }
+
+    public void AddStudent(Student student)
+    {
+        if (!_students.Contains(student))
+        {
+            _students.Add(student);
+        }
+    }
+
+    public void RemoveStudent(Student student)
+    {
+        if (_students.Contains(student))
+        {
+            _students.Remove(student);
+        }
+    }
+
+    public string GetInfo()
+    {
+        var professorName = _professor?.Name ?? "не назначен";
+        return $"Курс: {Name} ({Id}), {Credits} кредитов, Преподаватель: {professorName}";
+    }
+
+    public string GetDetailedInfo()
+    {
+        var professorInfo = _professor?.Name ?? "не назначен";
+        var studentsInfo = _students.Any()
+            ? string.Join("\n  ", _students.Select(s => s.Name))
+            : "нет студентов";
+
+        return $"Курс ID: {Id}\n" +
+               $"Название: {Name}\n" +
+               $"Описание: {Description}\n" +
+               $"Кредиты: {Credits}\n" +
+               $"Преподаватель: {professorInfo}\n" +
+               $"Студенты ({_students.Count}):\n  {studentsInfo}";
+    }
+}
