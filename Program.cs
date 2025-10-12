@@ -38,3 +38,4 @@ public abstract class Person : IUniversityMember
         return GetInfo();
     }
 }
+
