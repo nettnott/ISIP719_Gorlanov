@@ -364,12 +364,12 @@ public class ConsoleMenu
             Console.Clear();
             Console.WriteLine("students");
             Console.WriteLine("1 - add");
-            Console.WriteLine("2. Показать всех студентов");
-            Console.WriteLine("3. Показать детальную информацию о студенте");
-            Console.WriteLine("4. Записать студента на курс");
-            Console.WriteLine("5. Показать курсы студента");
-            Console.WriteLine("0. Назад");
-            Console.Write("Выберите опцию: ");
+            Console.WriteLine("2 - show all");
+            Console.WriteLine("3 - show abt specific one");
+            Console.WriteLine("4 - made a student attend a course");
+            Console.WriteLine("5 - show student`s courses");
+            Console.WriteLine("0 - back");
+            Console.Write("choose a n option: ");
 
             var choice = Console.ReadLine();
             switch (choice)
@@ -392,10 +392,10 @@ public class ConsoleMenu
                 case "0":
                     return;
                 default:
-                    Console.WriteLine("Неверный выбор.");
+                    Console.WriteLine("wroongggggggggg");
                     break;
             }
-            Console.WriteLine("Нажмите любую клавишу...");
+            Console.WriteLine("press any key...");
             Console.ReadKey();
         }
     }
