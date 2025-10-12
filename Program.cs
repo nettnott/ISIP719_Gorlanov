@@ -634,13 +634,13 @@ public class ConsoleMenu
 
     private void ShowStudentCourses()
     {
-        Console.Write("Введите ID студента: ");
+        Console.Write("input student id: ");
         if (int.TryParse(Console.ReadLine(), out int id))
         {
             var student = _university.GetStudent(id);
             if (student != null)
             {
-                Console.WriteLine($"Курсы студента {student.Name}:");
+                Console.WriteLine($"student`s courses {student.Name}:");
                 foreach (var course in student.Courses)
                 {
                     Console.WriteLine($"  - {course.Name}");
@@ -648,20 +648,20 @@ public class ConsoleMenu
             }
             else
             {
-                Console.WriteLine("Студент не найден.");
+                Console.WriteLine("not found");
             }
         }
     }
 
     private void ShowCourseStudents()
     {
-        Console.Write("Введите ID курса: ");
+        Console.Write("input course id: ");
         if (int.TryParse(Console.ReadLine(), out int id))
         {
             var course = _university.GetCourse(id);
             if (course != null)
             {
-                Console.WriteLine($"Студенты курса {course.Name}:");
+                Console.WriteLine($"course`s students {course.Name}:");
                 foreach (var student in course.Students)
                 {
                     Console.WriteLine($"  - {student.Name}");
@@ -669,7 +669,7 @@ public class ConsoleMenu
             }
             else
             {
-                Console.WriteLine("Курс не найден.");
+                Console.WriteLine("not found");
             }
         }
     }
