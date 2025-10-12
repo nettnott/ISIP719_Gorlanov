@@ -676,23 +676,23 @@ public class ConsoleMenu
 
     private void ShowAllData()
     {
-        Console.WriteLine("\n=== ВСЕ ДАННЫЕ УНИВЕРСИТЕТА ===");
+        Console.WriteLine("\nall daata");
 
-        Console.WriteLine("\n--- СТУДЕНТЫ ---");
+        Console.WriteLine("\nstudents");
         foreach (var student in _university.Students)
         {
             Console.WriteLine(student.GetDetailedInfo());
             Console.WriteLine();
         }
 
-        Console.WriteLine("\n--- ПРЕПОДАВАТЕЛИ ---");
+        Console.WriteLine("\nprofessors");
         foreach (var professor in _university.Professors)
         {
             Console.WriteLine(professor.GetDetailedInfo());
             Console.WriteLine();
         }
 
-        Console.WriteLine("\n--- КУРСЫ ---");
+        Console.WriteLine("\ncourses");
         foreach (var course in _university.Courses)
         {
             Console.WriteLine(course.GetDetailedInfo());
