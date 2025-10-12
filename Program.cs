@@ -309,3 +309,394 @@ public class UniversitySystem
         }
     }
 }
+
+public class ConsoleMenu
+{
+    private UniversitySystem _university;
+
+    public ConsoleMenu(UniversitySystem university)
+    {
+        _university = university;
+    }
+
+    public void ShowMainMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("uni system");
+            Console.WriteLine("1 - students");
+            Console.WriteLine("2 - professors");
+            Console.WriteLine("3 - courses");
+            Console.WriteLine("4 - all data");
+            Console.WriteLine("0 - exit");
+            Console.Write("choose ur option: ");
+
+            var choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    ShowStudentMenu();
+                    break;
+                case "2":
+                    ShowProfessorMenu();
+                    break;
+                case "3":
+                    ShowCourseMenu();
+                    break;
+                case "4":
+                    ShowAllData();
+                    break;
+                case "0":
+                    return;
+                default:
+                    Console.WriteLine("da mojno pj normalno pisat");
+                    Console.ReadKey();
+                    break;
+            }
+        }
+    }
+
+    private void ShowStudentMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("students");
+            Console.WriteLine("1 - add");
+            Console.WriteLine("2. Показать всех студентов");
+            Console.WriteLine("3. Показать детальную информацию о студенте");
+            Console.WriteLine("4. Записать студента на курс");
+            Console.WriteLine("5. Показать курсы студента");
+            Console.WriteLine("0. Назад");
+            Console.Write("Выберите опцию: ");
+
+            var choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    AddStudent();
+                    break;
+                case "2":
+                    ShowAllStudents();
+                    break;
+                case "3":
+                    ShowStudentDetails();
+                    break;
+                case "4":
+                    EnrollStudentInCourse();
+                    break;
+                case "5":
+                    ShowStudentCourses();
+                    break;
+                case "0":
+                    return;
+                default:
+                    Console.WriteLine("Неверный выбор.");
+                    break;
+            }
+            Console.WriteLine("Нажмите любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+
+    private void ShowProfessorMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("=== УПРАВЛЕНИЕ ПРЕПОДАВАТЕЛЯМИ ===");
+            Console.WriteLine("1. Добавить преподавателя");
+            Console.WriteLine("2. Показать всех преподавателей");
+            Console.WriteLine("3. Показать детальную информацию о преподавателе");
+            Console.WriteLine("4. Назначить преподавателя на курс");
+            Console.WriteLine("0. Назад");
+            Console.Write("Выберите опцию: ");
+
+            var choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    AddProfessor();
+                    break;
+                case "2":
+                    ShowAllProfessors();
+                    break;
+                case "3":
+                    ShowProfessorDetails();
+                    break;
+                case "4":
+                    AssignProfessorToCourse();
+                    break;
+                case "0":
+                    return;
+                default:
+                    Console.WriteLine("Неверный выбор.");
+                    break;
+            }
+            Console.WriteLine("Нажмите любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+
+    private void ShowCourseMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("=== УПРАВЛЕНИЕ КУРСАМИ ===");
+            Console.WriteLine("1. Добавить курс");
+            Console.WriteLine("2. Показать все курсы");
+            Console.WriteLine("3. Показать детальную информацию о курсе");
+            Console.WriteLine("4. Показать студентов курса");
+            Console.WriteLine("0. Назад");
+            Console.Write("Выберите опцию: ");
+
+            var choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    AddCourse();
+                    break;
+                case "2":
+                    ShowAllCourses();
+                    break;
+                case "3":
+                    ShowCourseDetails();
+                    break;
+                case "4":
+                    ShowCourseStudents();
+                    break;
+                case "0":
+                    return;
+                default:
+                    Console.WriteLine("Неверный выбор.");
+                    break;
+            }
+            Console.WriteLine("Нажмите любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+
+    // Реализация методов меню
+    private void AddStudent()
+    {
+        Console.Write("Имя: ");
+        var name = Console.ReadLine();
+        Console.Write("Возраст: ");
+        var age = int.Parse(Console.ReadLine());
+        Console.Write("Контактная информация: ");
+        var contact = Console.ReadLine();
+        Console.Write("Специальность: ");
+        var major = Console.ReadLine();
+        Console.Write("Курс (год): ");
+        var year = int.Parse(Console.ReadLine());
+
+        var student = _university.AddStudent(name, age, contact, major, year);
+        Console.WriteLine($"Студент добавлен с ID: {student.Id}");
+    }
+
+    private void AddProfessor()
+    {
+        Console.Write("Имя: ");
+        var name = Console.ReadLine();
+        Console.Write("Возраст: ");
+        var age = int.Parse(Console.ReadLine());
+        Console.Write("Контактная информация: ");
+        var contact = Console.ReadLine();
+        Console.Write("Кафедра: ");
+        var department = Console.ReadLine();
+        Console.Write("Специализация: ");
+        var specialization = Console.ReadLine();
+
+        var professor = _university.AddProfessor(name, age, contact, department, specialization);
+        Console.WriteLine($"Преподаватель добавлен с ID: {professor.Id}");
+    }
+
+    private void AddCourse()
+    {
+        Console.Write("Название курса: ");
+        var name = Console.ReadLine();
+        Console.Write("Описание: ");
+        var description = Console.ReadLine();
+        Console.Write("Кредиты: ");
+        var credits = int.Parse(Console.ReadLine());
+
+        var course = _university.AddCourse(name, description, credits);
+        Console.WriteLine($"Курс добавлен с ID: {course.Id}");
+    }
+
+    private void ShowAllStudents()
+    {
+        Console.WriteLine("\n=== ВСЕ СТУДЕНТЫ ===");
+        foreach (var student in _university.Students)
+        {
+            Console.WriteLine(student.GetInfo());
+        }
+    }
+
+    private void ShowAllProfessors()
+    {
+        Console.WriteLine("\n=== ВСЕ ПРЕПОДАВАТЕЛИ ===");
+        foreach (var professor in _university.Professors)
+        {
+            Console.WriteLine(professor.GetInfo());
+        }
+    }
+
+    private void ShowAllCourses()
+    {
+        Console.WriteLine("\n=== ВСЕ КУРСЫ ===");
+        foreach (var course in _university.Courses)
+        {
+            Console.WriteLine(course.GetInfo());
+        }
+    }
+
+    private void ShowStudentDetails()
+    {
+        Console.Write("Введите ID студента: ");
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            var student = _university.GetStudent(id);
+            if (student != null)
+            {
+                Console.WriteLine(student.GetDetailedInfo());
+            }
+            else
+            {
+                Console.WriteLine("Студент не найден.");
+            }
+        }
+    }
+
+    private void ShowProfessorDetails()
+    {
+        Console.Write("Введите ID преподавателя: ");
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            var professor = _university.GetProfessor(id);
+            if (professor != null)
+            {
+                Console.WriteLine(professor.GetDetailedInfo());
+            }
+            else
+            {
+                Console.WriteLine("Преподаватель не найден.");
+            }
+        }
+    }
+
+    private void ShowCourseDetails()
+    {
+        Console.Write("Введите ID курса: ");
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            var course = _university.GetCourse(id);
+            if (course != null)
+            {
+                Console.WriteLine(course.GetDetailedInfo());
+            }
+            else
+            {
+                Console.WriteLine("Курс не найден.");
+            }
+        }
+    }
+
+    private void EnrollStudentInCourse()
+    {
+        Console.Write("Введите ID студента: ");
+        if (int.TryParse(Console.ReadLine(), out int studentId))
+        {
+            Console.Write("Введите ID курса: ");
+            if (int.TryParse(Console.ReadLine(), out int courseId))
+            {
+                _university.EnrollStudentInCourse(studentId, courseId);
+                Console.WriteLine("Студент записан на курс.");
+            }
+        }
+    }
+
+    private void AssignProfessorToCourse()
+    {
+        Console.Write("Введите ID преподавателя: ");
+        if (int.TryParse(Console.ReadLine(), out int professorId))
+        {
+            Console.Write("Введите ID курса: ");
+            if (int.TryParse(Console.ReadLine(), out int courseId))
+            {
+                _university.AssignProfessorToCourse(professorId, courseId);
+                Console.WriteLine("Преподаватель назначен на курс.");
+            }
+        }
+    }
+
+    private void ShowStudentCourses()
+    {
+        Console.Write("Введите ID студента: ");
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            var student = _university.GetStudent(id);
+            if (student != null)
+            {
+                Console.WriteLine($"Курсы студента {student.Name}:");
+                foreach (var course in student.Courses)
+                {
+                    Console.WriteLine($"  - {course.Name}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Студент не найден.");
+            }
+        }
+    }
+
+    private void ShowCourseStudents()
+    {
+        Console.Write("Введите ID курса: ");
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            var course = _university.GetCourse(id);
+            if (course != null)
+            {
+                Console.WriteLine($"Студенты курса {course.Name}:");
+                foreach (var student in course.Students)
+                {
+                    Console.WriteLine($"  - {student.Name}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Курс не найден.");
+            }
+        }
+    }
+
+    private void ShowAllData()
+    {
+        Console.WriteLine("\n=== ВСЕ ДАННЫЕ УНИВЕРСИТЕТА ===");
+
+        Console.WriteLine("\n--- СТУДЕНТЫ ---");
+        foreach (var student in _university.Students)
+        {
+            Console.WriteLine(student.GetDetailedInfo());
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("\n--- ПРЕПОДАВАТЕЛИ ---");
+        foreach (var professor in _university.Professors)
+        {
+            Console.WriteLine(professor.GetDetailedInfo());
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("\n--- КУРСЫ ---");
+        foreach (var course in _university.Courses)
+        {
+            Console.WriteLine(course.GetDetailedInfo());
+            Console.WriteLine();
+        }
+    }
+}
