@@ -606,28 +606,28 @@ public class ConsoleMenu
 
     private void EnrollStudentInCourse()
     {
-        Console.Write("Введите ID студента: ");
+        Console.Write("input student id: ");
         if (int.TryParse(Console.ReadLine(), out int studentId))
         {
-            Console.Write("Введите ID курса: ");
+            Console.Write("input course id: ");
             if (int.TryParse(Console.ReadLine(), out int courseId))
             {
                 _university.EnrollStudentInCourse(studentId, courseId);
-                Console.WriteLine("Студент записан на курс.");
+                Console.WriteLine("student can attend that course now");
             }
         }
     }
 
     private void AssignProfessorToCourse()
     {
-        Console.Write("Введите ID преподавателя: ");
+        Console.Write("input prof id: ");
         if (int.TryParse(Console.ReadLine(), out int professorId))
         {
-            Console.Write("Введите ID курса: ");
+            Console.Write("input course id: ");
             if (int.TryParse(Console.ReadLine(), out int courseId))
             {
                 _university.AssignProfessorToCourse(professorId, courseId);
-                Console.WriteLine("Преподаватель назначен на курс.");
+                Console.WriteLine("noe this is their course nice cool swag");
             }
         }
     }
