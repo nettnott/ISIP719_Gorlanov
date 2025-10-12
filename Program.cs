@@ -229,3 +229,83 @@ public class Course : IUniversityMember
                $"students ({_students.Count}):\n  {studentsInfo}";
     }
 }
+public class UniversitySystem
+{
+    private List<Student> _students;
+    private List<Professor> _professors;
+    private List<Course> _courses;
+    private int _nextStudentId;
+    private int _nextProfessorId;
+    private int _nextCourseId;
+
+    public IReadOnlyList<Student> Students => _students.AsReadOnly();
+    public IReadOnlyList<Professor> Professors => _professors.AsReadOnly();
+    public IReadOnlyList<Course> Courses => _courses.AsReadOnly();
+
+    public UniversitySystem()
+    {
+        _students = new List<Student>();
+        _professors = new List<Professor>();
+        _courses = new List<Course>();
+        _nextStudentId = 1;
+        _nextProfessorId = 1;
+        _nextCourseId = 1;
+    }
+
+    public Student AddStudent(string name, int age, string contactInfo, string major, int year)
+    {
+        var student = new Student(_nextStudentId++, name, age, contactInfo, major, year);
+        _students.Add(student);
+        return student;
+    }
+
+    public Student GetStudent(int id)
+    {
+        return _students.FirstOrDefault(s => s.Id == id);
+    }
+
+    public Professor AddProfessor(string name, int age, string contactInfo, string department, string specialization)
+    {
+        var professor = new Professor(_nextProfessorId++, name, age, contactInfo, department, specialization);
+        _professors.Add(professor);
+        return professor;
+    }
+
+    public Professor GetProfessor(int id)
+    {
+        return _professors.FirstOrDefault(p => p.Id == id);
+    }
+
+    public Course AddCourse(string name, string description, int credits)
+    {
+        var course = new Course(_nextCourseId++, name, description, credits);
+        _courses.Add(course);
+        return course;
+    }
+
+    public Course GetCourse(int id)
+    {
+        return _courses.FirstOrDefault(c => c.Id == id);
+    }
+    public void EnrollStudentInCourse(int studentId, int courseId)
+    {
+        var student = GetStudent(studentId);
+        var course = GetCourse(courseId);
+
+        if (student != null && course != null)
+        {
+            student.EnrollInCourse(course);
+        }
+    }
+
+    public void AssignProfessorToCourse(int professorId, int courseId)
+    {
+        var professor = GetProfessor(professorId);
+        var course = GetCourse(courseId);
+
+        if (professor != null && course != null)
+        {
+            professor.AssignToCourse(course);
+        }
+    }
+}
