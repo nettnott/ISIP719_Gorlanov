@@ -45,6 +45,7 @@ public class Student : Person
     private int _year;
     private List<Course> _courses;
 
+
     public string Major => _major;
     public int Year => _year;
     public IReadOnlyList<Course> Courses => _courses.AsReadOnly();
