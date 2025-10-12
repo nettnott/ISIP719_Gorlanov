@@ -481,19 +481,19 @@ public class ConsoleMenu
     // Реализация методов меню
     private void AddStudent()
     {
-        Console.Write("Имя: ");
+        Console.Write("name: ");
         var name = Console.ReadLine();
-        Console.Write("Возраст: ");
+        Console.Write("age: ");
         var age = int.Parse(Console.ReadLine());
-        Console.Write("Контактная информация: ");
+        Console.Write("contact info: ");
         var contact = Console.ReadLine();
-        Console.Write("Специальность: ");
+        Console.Write("major: ");
         var major = Console.ReadLine();
-        Console.Write("Курс (год): ");
+        Console.Write("grade: ");
         var year = int.Parse(Console.ReadLine());
 
         var student = _university.AddStudent(name, age, contact, major, year);
-        Console.WriteLine($"Студент добавлен с ID: {student.Id}");
+        Console.WriteLine($"added with ID: {student.Id}");
     }
 
     private void AddProfessor()
