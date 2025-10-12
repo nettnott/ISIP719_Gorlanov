@@ -95,3 +95,63 @@ public class Student : Person
                $"couarses info: {coursesInfo}";
     }
 }
+
+public class Professor : Person
+{
+    private string _department;
+    private string _specialization;
+    private List<Course> _coursesTeaching;
+
+    public string Department => _department;
+    public string Specialization => _specialization;
+    public IReadOnlyList<Course> CoursesTeaching => _coursesTeaching.AsReadOnly();
+
+    public Professor(int id, string name, int age, string contactInfo, string department, string specialization)
+        : base(id, name, age, contactInfo)
+    {
+        _department = department;
+        _specialization = specialization;
+        _coursesTeaching = new List<Course>();
+    }
+
+    public void AssignToCourse(Course course)
+    {
+        if (!_coursesTeaching.Contains(course))
+        {
+            _coursesTeaching.Add(course);
+            course.AssignProfessor(this);
+        }
+    }
+
+    public void RemoveFromCourse(Course course)
+    {
+        if (_coursesTeaching.Contains(course))
+        {
+            _coursesTeaching.Remove(course);
+            if (course.Professor == this)
+            {
+                course.RemoveProfessor();
+            }
+        }
+    }
+
+    public override string GetInfo()
+    {
+        return $"Преподаватель: {Name} ({Id}), {Department}, {Specialization}";
+    }
+
+    public override string GetDetailedInfo()
+    {
+        var coursesInfo = _coursesTeaching.Any()
+            ? string.Join(", ", _coursesTeaching.Select(c => c.Name))
+            : "нет курсов";
+
+        return $"Преподаватель ID: {Id}\n" +
+               $"Имя: {Name}\n" +
+               $"Возраст: {Age}\n" +
+               $"Контакт: {ContactInfo}\n" +
+               $"Кафедра: {Department}\n" +
+               $"Специализация: {Specialization}\n" +
+               $"Ведет курсы: {coursesInfo}";
+    }
+}
