@@ -700,3 +700,34 @@ public class ConsoleMenu
         }
     }
 }
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var university = new UniversitySystem();
+        InitializeTestData(university);
+
+        var menu = new ConsoleMenu(university);
+        menu.ShowMainMenu();
+    }
+
+    static void InitializeTestData(UniversitySystem university)
+    {
+        var student1 = university.AddStudent("Иван Петров", 20, "ivan@mail.com", "Информатика", 2);
+        var student2 = university.AddStudent("Мария Сидорова", 19, "maria@mail.com", "Математика", 1);
+
+        var professor1 = university.AddProfessor("Доктор Смирнов", 45, "smirnov@university.edu", "Кафедра информатики", "Программирование");
+        var professor2 = university.AddProfessor("Профессор Иванова", 38, "ivanova@university.edu", "Кафедра математики", "Высшая математика");
+
+        var course1 = university.AddCourse("Программирование на C#", "Основы программирования на языке C#", 4);
+        var course2 = university.AddCourse("Высшая математика", "Математический анализ и линейная алгебра", 5);
+
+        professor1.AssignToCourse(course1);
+        professor2.AssignToCourse(course2);
+
+        student1.EnrollInCourse(course1);
+        student1.EnrollInCourse(course2);
+        student2.EnrollInCourse(course2);
+    }
+}
