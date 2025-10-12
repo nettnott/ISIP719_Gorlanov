@@ -86,12 +86,12 @@ public class Student : Person
             ? string.Join(", ", _courses.Select(c => c.Name))
             : "no courses";
 
-        return $"Студент ID: {Id}\n" +
-               $"Имя: {Name}\n" +
-               $"Возраст: {Age}\n" +
-               $"Контакт: {ContactInfo}\n" +
-               $"Специальность: {Major}\n" +
-               $"Курс: {Year}\n" +
-               $"Записан на курсы: {coursesInfo}";
+        return $"Student ID: {Id}\n" +
+               $"name: {Name}\n" +
+               $"age: {Age}\n" +
+               $"contact info: {ContactInfo}\n" +
+               $"major: {Major}\n" +
+               $"grade: {Year}\n" +
+               $"couarses info: {coursesInfo}";
     }
 }
