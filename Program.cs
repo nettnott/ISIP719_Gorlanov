@@ -515,15 +515,15 @@ public class ConsoleMenu
 
     private void AddCourse()
     {
-        Console.Write("Название курса: ");
+        Console.Write("name: ");
         var name = Console.ReadLine();
-        Console.Write("Описание: ");
+        Console.Write("description: ");
         var description = Console.ReadLine();
-        Console.Write("Кредиты: ");
+        Console.Write("credits: ");
         var credits = int.Parse(Console.ReadLine());
 
         var course = _university.AddCourse(name, description, credits);
-        Console.WriteLine($"Курс добавлен с ID: {course.Id}");
+        Console.WriteLine($"course added with ID: {course.Id}");
     }
 
     private void ShowAllStudents()
