@@ -137,14 +137,14 @@ public class Professor : Person
 
     public override string GetInfo()
     {
-        return $"Преподаватель: {Name} ({Id}), {Department}, {Specialization}";
+        return $"Professor: {Name} ({Id}), {Department}, {Specialization}";
     }
 
     public override string GetDetailedInfo()
     {
         var coursesInfo = _coursesTeaching.Any()
             ? string.Join(", ", _coursesTeaching.Select(c => c.Name))
-            : "нет курсов";
+            : "no courses";
 
         return $"Преподаватель ID: {Id}\n" +
                $"Имя: {Name}\n" +
