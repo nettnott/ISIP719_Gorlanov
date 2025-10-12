@@ -430,7 +430,7 @@ public class ConsoleMenu
                     break;
                 case "0":
                     return;
-                default:''
+                default:
                     Console.WriteLine("wwrooooonggggggg");
                     break;
             }
@@ -498,19 +498,19 @@ public class ConsoleMenu
 
     private void AddProfessor()
     {
-        Console.Write("Имя: ");
+        Console.Write("name: ");
         var name = Console.ReadLine();
-        Console.Write("Возраст: ");
+        Console.Write("age: ");
         var age = int.Parse(Console.ReadLine());
-        Console.Write("Контактная информация: ");
+        Console.Write("contact info: ");
         var contact = Console.ReadLine();
-        Console.Write("Кафедра: ");
+        Console.Write("department: ");
         var department = Console.ReadLine();
-        Console.Write("Специализация: ");
+        Console.Write("specialization: ");
         var specialization = Console.ReadLine();
 
         var professor = _university.AddProfessor(name, age, contact, department, specialization);
-        Console.WriteLine($"Преподаватель добавлен с ID: {professor.Id}");
+        Console.WriteLine($"professor added with ID: {professor.Id}");
     }
 
     private void AddCourse()
