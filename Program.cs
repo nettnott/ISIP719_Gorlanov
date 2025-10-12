@@ -430,8 +430,8 @@ public class ConsoleMenu
                     break;
                 case "0":
                     return;
-                default:
-                    Console.WriteLine("Неверный выбор.");
+                default:''
+                    Console.WriteLine("wwrooooonggggggg");
                     break;
             }
             Console.WriteLine("Нажмите любую клавишу...");
@@ -444,13 +444,13 @@ public class ConsoleMenu
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("=== УПРАВЛЕНИЕ КУРСАМИ ===");
-            Console.WriteLine("1. Добавить курс");
-            Console.WriteLine("2. Показать все курсы");
-            Console.WriteLine("3. Показать детальную информацию о курсе");
-            Console.WriteLine("4. Показать студентов курса");
-            Console.WriteLine("0. Назад");
-            Console.Write("Выберите опцию: ");
+            Console.WriteLine("courses");
+            Console.WriteLine("1 - add");
+            Console.WriteLine("2 - show all");
+            Console.WriteLine("3. - show specififc");
+            Console.WriteLine("4 - show stuudents who attend");
+            Console.WriteLine("0 - back");
+            Console.Write("choose an option: ");
 
             var choice = Console.ReadLine();
             switch (choice)
@@ -470,7 +470,7 @@ public class ConsoleMenu
                 case "0":
                     return;
                 default:
-                    Console.WriteLine("Неверный выбор.");
+                    Console.WriteLine("wroooooong");
                     break;
             }
             Console.WriteLine("Нажмите любую клавишу...");
