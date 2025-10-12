@@ -405,13 +405,13 @@ public class ConsoleMenu
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("=== УПРАВЛЕНИЕ ПРЕПОДАВАТЕЛЯМИ ===");
-            Console.WriteLine("1. Добавить преподавателя");
-            Console.WriteLine("2. Показать всех преподавателей");
-            Console.WriteLine("3. Показать детальную информацию о преподавателе");
-            Console.WriteLine("4. Назначить преподавателя на курс");
-            Console.WriteLine("0. Назад");
-            Console.Write("Выберите опцию: ");
+            Console.WriteLine("professors");
+            Console.WriteLine("1 - add");
+            Console.WriteLine("2 - show all");
+            Console.WriteLine("3 - show specific");
+            Console.WriteLine("4 - give prof a course");
+            Console.WriteLine("0 - back");
+            Console.Write("Choose ur option: ");
 
             var choice = Console.ReadLine();
             switch (choice)
