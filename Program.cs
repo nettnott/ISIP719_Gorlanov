@@ -555,7 +555,7 @@ public class ConsoleMenu
 
     private void ShowStudentDetails()
     {
-        Console.Write("Введите ID студента: ");
+        Console.Write("write student id: ");
         if (int.TryParse(Console.ReadLine(), out int id))
         {
             var student = _university.GetStudent(id);
@@ -565,14 +565,14 @@ public class ConsoleMenu
             }
             else
             {
-                Console.WriteLine("Студент не найден.");
+                Console.WriteLine("there is no one");
             }
         }
     }
 
     private void ShowProfessorDetails()
     {
-        Console.Write("Введите ID преподавателя: ");
+        Console.Write("write prof id: ");
         if (int.TryParse(Console.ReadLine(), out int id))
         {
             var professor = _university.GetProfessor(id);
@@ -582,14 +582,14 @@ public class ConsoleMenu
             }
             else
             {
-                Console.WriteLine("Преподаватель не найден.");
+                Console.WriteLine("there is no one");
             }
         }
     }
 
     private void ShowCourseDetails()
     {
-        Console.Write("Введите ID курса: ");
+        Console.Write("write course id: ");
         if (int.TryParse(Console.ReadLine(), out int id))
         {
             var course = _university.GetCourse(id);
@@ -599,7 +599,7 @@ public class ConsoleMenu
             }
             else
             {
-                Console.WriteLine("Курс не найден.");
+                Console.WriteLine("there is no cpurse like that");
             }
         }
     }
