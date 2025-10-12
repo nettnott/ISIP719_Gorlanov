@@ -45,7 +45,6 @@ public class Student : Person
     private int _year;
     private List<Course> _courses;
 
-
     public string Major => _major;
     public int Year => _year;
     public IReadOnlyList<Course> Courses => _courses.AsReadOnly();
@@ -78,14 +77,14 @@ public class Student : Person
 
     public override string GetInfo()
     {
-        return $"Студент: {Name} ({Id}), {Major}, {Year} курс";
+        return $"Studwnt: {Name} ({Id}), {Major}, {Year} grade";
     }
 
     public override string GetDetailedInfo()
     {
         var coursesInfo = _courses.Any()
             ? string.Join(", ", _courses.Select(c => c.Name))
-            : "нет курсов";
+            : "no courses";
 
         return $"Студент ID: {Id}\n" +
                $"Имя: {Name}\n" +
