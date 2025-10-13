@@ -2,12 +2,15 @@
 
 public class gaymer
 {
+    public int hp = 100;
 
 }
 
 public class enemy
 {
-
+    public int hp = 100;
+    public int atk;
+    public int def = 100;
 }
 
 public class boss : enemy
