@@ -13,7 +13,7 @@ public class enemy
     public int def = 100;
 }
 
-public class boss : enemy
+public class goblin : enemy
 {
 
 }
