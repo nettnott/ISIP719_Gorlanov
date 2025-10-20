@@ -29,10 +29,10 @@ class equipment
 
 public class Player
 {
-    public int hp ;
+    public int hp;
     public bool debuff = false;
-    public int def ;
-    public int atk ;
+    public int def;
+    public int atk;
     Weapon Weapon { get; set; }
     equipment equipment { get; set; }
     public Player(int hp, int def, int atk)
@@ -40,6 +40,12 @@ public class Player
         this.hp = hp;
         this.def = def;
         this.atk = atk;
+    }
+    public Random Rand = new Random();
+    public virtual void attack(Enemy enemy)
+    {
+        int udar = Convert.ToInt32(Rand.Next(3, atk));
+        enemy.hp -= udar;
     }
 }
 /* подо мной м5 асфальт 8 у нее биркин цвета осень она закурит но я бросил*/
@@ -55,9 +61,11 @@ public class Enemy
         this.def = def;
         this.atk = atk;
     }
-    public virtual void attac()
+    public Random Rand = new Random();
+    public virtual void attack(Player player)
     {
-
+        int udar = Convert.ToInt32(Rand.Next(3, atk));
+        player.hp -= udar;
     }
 }
 
@@ -66,23 +74,49 @@ public class Goblin : Enemy
     //имеет шанс нанести критический урон
     public Goblin(int hp, int def, int atk) :base(hp, def, atk)
     {
-
+        this.hp = hp;
+        this.def = def;
+        this.atk = atk;
     }
-    public override void attac()
+
+    double critChance = 0.2;
+    public override void attack(Player player)
     {
-        base.attac();
+        bool isCrit = Rand.NextDouble() < critChance;
+        int damage = Convert.ToInt32(Rand.Next(3, atk));
 
+        if (isCrit)
+        {
+            damage = (int)(damage * 1.5);
+            Console.WriteLine("Crit hit!");
+        }
+
+        player.hp -= damage;
     }
+
 }
 
 public class Skelet : Enemy
 {
     //игнорирует защиту игрока.
+    public Skelet(int hp, int def, int atk) : base(hp, def, atk)
+    {
+        this.hp = hp;
+        this.def = def;
+        this.atk = atk;
+    }
+
 }
 
 public class Mag : Enemy
 {
     //имеет шанс наложить «заморозку» (игрок пропускает следующий ход).
+    public Mag(int hp, int def, int atk) : base(hp, def, atk)
+    {
+        this.hp = hp;
+        this.def = def;
+        this.atk = atk;
+    }
 }
 
 //public class Items
