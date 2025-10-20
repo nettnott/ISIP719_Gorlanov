@@ -91,7 +91,8 @@ public class Goblin : Enemy
             Console.WriteLine("Crit hit!");
         }
 
-        player.hp -= damage;
+        player.hp -= damage-player.def;
+        player.def -= damage;
     }
 
 }
@@ -105,7 +106,11 @@ public class Skelet : Enemy
         this.def = def;
         this.atk = atk;
     }
-
+    public override void attack(Player player)
+    {
+        int damage = Convert.ToInt32(Rand.Next(3, atk));
+        player.hp -= damage;
+    }
 }
 
 public class Mag : Enemy
@@ -116,6 +121,22 @@ public class Mag : Enemy
         this.hp = hp;
         this.def = def;
         this.atk = atk;
+    }
+
+    double freezeChance = 0.2;
+    public override void attack(Player player)
+    {
+        bool isFrozen = Rand.NextDouble() < freezeChance;
+        int damage = Convert.ToInt32(Rand.Next(3, atk));
+
+        if (isFrozen)
+        {
+            player.debuff = true;
+            Console.WriteLine("Zamorojeno!");
+        }
+
+        player.hp -= damage - player.def;
+        player.def -= damage;
     }
 }
 
@@ -139,6 +160,6 @@ public class gaym
         do
         {
 
-        } while (player.hp <= 0); 
+        } while (player.hp >= 0); 
     }
 }
