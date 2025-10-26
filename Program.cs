@@ -1,51 +1,108 @@
 ﻿using System;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
+using static System.Net.Mime.MediaTypeNames;
 
-class Weapon
+public class Weapon
 {
     public  Random Rand = new Random();
-    int atk { get; set; }
-    string name { get; set; }
+    public int atk { get; set; }
+    public string name { get; set; }
     string[] strings = { "Cocherga deada", "Oreshnik", "Spidoznaya igolka", "Otcislenie" };
     public Weapon()
     {
         name = strings[Rand.Next(0,4)];
         atk = Convert.ToInt32(Rand.Next(3, 75));
     }
+    public override string ToString()
+    {
+        return $"{name} (АТК: {atk})";
+    }
 }
-class equipment
+public class Equipment
 {
     public Random Rand = new Random();
-    int def { get; set; }
-    string name { get; set; }
+    public int def { get; set; }
+    public string name { get; set; }
     string[] strings = { "Trusi deada", "Lapti", "Futbolka 'lubluy emo'", "Kstum s pohoron" };
-    public equipment()
+    public Equipment()
     {
         name = strings[Rand.Next(0, 4)];
         def = Convert.ToInt32(Rand.Next(3, 75));
+    }
+    public override string ToString()
+    {
+        return $"{name} (DEF: {def})";
     }
 }
 
 public class Player
 {
     public int hp;
+    public int maxHp;
     public bool debuff = false;
     public int def;
     public int atk;
-    Weapon Weapon { get; set; }
-    equipment equipment { get; set; }
+    public Weapon Weapon { get; set; }
+    public Equipment Equipment { get; set; }
+    public bool IsDefending { get; set; }
     public Player(int hp, int def, int atk)
     {
+        this.maxHp = hp;
         this.hp = hp;
         this.def = def;
         this.atk = atk;
+        Weapon = new Weapon();
+        Equipment = new Equipment();
+        UpdateStats();
     }
     public Random Rand = new Random();
-    public virtual void attack(Enemy enemy)
+    public virtual void Attack(Enemy enemy)
     {
         int udar = Convert.ToInt32(Rand.Next(3, atk));
         enemy.hp -= udar;
+        Console.WriteLine($"woah! u have dealt {udar} damage!");
+    }
+    public void Defend()
+    {
+        IsDefending = true;
+        Console.WriteLine("u`ve got ready to defend!");
+    }
+    public void Heal()
+    {
+        hp = maxHp;
+        Console.WriteLine("fully healed!");
+    }
+
+    public void UpdateStats()
+    {
+        atk = Weapon.atk;
+        def = Equipment.def;
+    }
+    public void TakeDamage(int damage)
+    {
+        if (IsDefending)
+        {
+            if (Rand.NextDouble() < 0.4)
+            {
+                Console.WriteLine("Ыгссуыыагддн вуаутвув!");
+                IsDefending = false;
+                return;
+            }
+
+            double blockPercent = 0.7 + (Rand.NextDouble() * 0.3);
+            damage = (int)(damage * (1 - blockPercent));
+            Console.WriteLine($"u`ve dodged that punch! Now damage is {damage}.");
+            IsDefending = false;
+        }
+
+        hp -= damage;
+        if (hp < 0) hp = 0;
+    }
+
+    public string GetStatus()
+    {
+        return $"HP: {hp}/{maxHp} | Weapon: {Weapon} | Equipment: {Equipment}";
     }
 }
 /* подо мной м5 асфальт 8 у нее биркин цвета осень она закурит но я бросил*/
@@ -94,7 +151,6 @@ public class Goblin : Enemy
         player.hp -= damage-player.def;
         player.def -= damage;
     }
-
 }
 
 public class Skelet : Enemy
