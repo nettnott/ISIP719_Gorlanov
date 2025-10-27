@@ -473,12 +473,11 @@ public class Game
         {
             Console.WriteLine("uve lost lelele...");
         }
-
     }
 
     private void ContinueGame()
     {
-        Console.WriteLine("\nНажмите любую клавишу для продолжения...");
+        Console.WriteLine("press any key");
         Console.ReadKey();
     }
 }
