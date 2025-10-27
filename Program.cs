@@ -335,13 +335,11 @@ public class Game
 
             if (player.debuff)
             {
-                Console.WriteLine("Вы заморожены и пропускаете ход!");
+                Console.WriteLine("Youe frozen and are unable to sdelat hod");
                 player.debuff = false;
                 ContinueGame();
                 continue;
             }
-
-            // 50% шанс сундука, 50% шанс врага
             if (random.Next(2) == 0)
             {
                 OpenChest();
@@ -354,8 +352,8 @@ public class Game
 
             if (player.hp <= 0)
             {
-                Console.WriteLine("\n=== ИГРА ОКОНЧЕНА ===");
-                Console.WriteLine($"Вы продержались {hod} ходов.");
+                Console.WriteLine("GG BB");
+                Console.WriteLine($"Vi projerjalis {hod} hodov.");
                 break;
             }
 
@@ -365,70 +363,63 @@ public class Game
 
     private Enemy CreateEnemy()
     {
-        // Каждые 10 ходов - босс
         if (hod % 10 == 0)
         {
             int bossType = random.Next(4);
             return bossType switch
             {
-                0 => new BossVvg(),
-                1 => new BossKovalsky(),
-                2 => new BossArchmage(),
-                3 => new BossPestov(),
-                _ => new BossVvg()
+                0 => new VVG(),
+                1 => new Kovalski(),
+                2 => new ArkhimagCplusplus(),
+                3 => new PestovCminusminus()
             };
         }
 
-        // Обычные враги
         int enemyType = random.Next(3);
         return enemyType switch
         {
             0 => new Goblin(),
             1 => new Skelet(),
-            2 => new Mag(),
-            _ => new Goblin()
+            2 => new Mag()
         };
     }
 
     private void OpenChest()
     {
-        Console.WriteLine("\nВы нашли сундук!");
-
-        // 30% шанс зелья, 70% шанс предмета
+        Console.WriteLine("Chest!");
         if (random.NextDouble() < 0.3)
         {
-            Console.WriteLine("В сундуке лечебное зелье!");
+            Console.WriteLine("Healing potion!");
             player.Heal();
         }
         else
         {
-            // 50% шанс оружия, 50% шанс брони
             if (random.Next(2) == 0)
             {
                 Weapon newWeapon = new Weapon();
-                Console.WriteLine($"В сундуке оружие: {newWeapon}");
-                Console.WriteLine($"Ваше текущее оружие: {player.Weapon}");
-                Console.Write("Взять новое оружие? (y/n): ");
+                Console.WriteLine($"Tere is a weapon: {newWeapon}");
+                Console.WriteLine($"Ur current weapon: {player.Weapon}");
+                Console.Write("Take new? (y/n): ");
 
                 if (Console.ReadLine().ToLower() == "y")
                 {
                     player.Weapon = newWeapon;
                     player.UpdateStats();
-                    Console.WriteLine($"Вы экипировали: {newWeapon.name}");
+                    Console.WriteLine($"U`ve equiped: {newWeapon.name}");
                 }
             }
             else
             {
-                Armor newArmor = new Armor();
-                Console.WriteLine($"В сундуке броня: {newArmor}");
-                Console.WriteLine($"Ваша текущая броня: {player.Armor}");
-                Console.Write("Взять новую броню? (y/n): ");
+                Equipment newArmor = new Equipment();
+                Console.WriteLine($"There is an armor: {newArmor}");
+                Console.WriteLine($"Ur current armor: {player.Equipment}");
+                Console.Write("Equip nw? (y/n): ");
 
                 if (Console.ReadLine().ToLower() == "y")
                 {
-                    player.Armor = newArmor;
+                    player.Equipment = newArmor;
                     player.UpdateStats();
-                    Console.WriteLine($"Вы экипировали: {newArmor.name}");
+                    Console.WriteLine($"U`ve equiped: {newArmor.name}");
                 }
             }
         }
@@ -436,30 +427,28 @@ public class Game
 
     private void Combat(Enemy enemy)
     {
-        Console.WriteLine($"\nВы встретили: {enemy.GetInfo()}");
+        Console.WriteLine($"U met: {enemy.GetInfo()}");
 
         while (enemy.hp > 0 && player.hp > 0)
         {
-            // Ход игрока
             PlayerTurn(enemy);
             if (enemy.hp <= 0) break;
 
-            // Ход врага
             EnemyTurn(enemy);
         }
 
         if (enemy.hp <= 0)
         {
-            Console.WriteLine($"\nВы победили {enemy.Name}!");
+            Console.WriteLine($"U won {enemy.Name}!");
         }
     }
 
     private void PlayerTurn(Enemy enemy)
     {
-        Console.WriteLine("\nВаш ход:");
-        Console.WriteLine("1 - Атаковать");
-        Console.WriteLine("2 - Защищаться");
-        Console.Write("Выберите действие: ");
+        Console.WriteLine("What do u want to do:");
+        Console.WriteLine("1 - attack");
+        Console.WriteLine("2 - defend");
+        Console.Write("ur choice: ");
 
         string input = Console.ReadLine();
         switch (input)
@@ -471,7 +460,7 @@ public class Game
                 player.Defend();
                 break;
             default:
-                Console.WriteLine("Неверный ввод, вы пропускаете ход.");
+                Console.WriteLine("Theres no other option, youve missed that turn.");
                 break;
         }
     }
