@@ -129,6 +129,7 @@ public class Enemy
     {
         int damage = Rand.Next(3, atk);
         player.TakeDamage(damage);
+        Console.WriteLine($"Ur hp: {player.hp}, ur def: {def}");
     }
 
     public virtual string GetInfo()
@@ -162,6 +163,7 @@ public class Goblin : Enemy
 
         Console.WriteLine($"{name} is attacking!");
         player.TakeDamage(damage);
+        Console.WriteLine($"Ur hp: {player.hp}, ur def: {def}");
     }
 }
 
@@ -181,6 +183,7 @@ public class Skelet : Enemy
         Console.WriteLine($"{name} is aattacking and he don`t give a damn abt ur def!");
         player.hp -= damage;
         if (player.hp < 0) player.hp = 0;
+        Console.WriteLine($"Ur hp: {player.hp}, ur def: {def}");
     }
 }
 
@@ -208,7 +211,7 @@ public class Mag : Enemy
             player.debuff = true;
             Console.WriteLine("Zamorojeno!");
         }
-
+        Console.WriteLine($"Ur hp: {player.hp}, ur def: {def}");
     }
 }
 
@@ -236,6 +239,7 @@ public class VVG: Goblin
 
         Console.WriteLine($"{name} is attacking!");
         player.TakeDamage(damage);
+        Console.WriteLine($"Ur hp: {player.hp}, ur def: {def}");
     }
 }
 
@@ -255,6 +259,7 @@ public class Kovalski : Skelet
         Console.WriteLine($"{name} is aattacking and he don`t give a damn abt ur def!");
         player.hp -= damage;
         if (player.hp < 0) player.hp = 0;
+        Console.WriteLine($"Ur hp: {player.hp}, ur def: {def}");
     }
 }
 
@@ -281,7 +286,7 @@ public class ArkhimagCplusplus : Mag
             player.debuff = true;
             Console.WriteLine("Zamorojeno!");
         }
-
+        Console.WriteLine($"Ur hp: {player.hp}, ur def: {def}");
     }
 }
 
@@ -307,6 +312,7 @@ public class ArkhimagCplusplus : Mag
                 player.debuff = true;
                 Console.WriteLine("Zamorojeno!");
             }
+            Console.WriteLine($"Ur hp: {player.hp}, ur def: {def}");
         }
     }
 
@@ -368,19 +374,19 @@ public class Game
             int bossType = random.Next(4);
             return bossType switch
             {
-                0 => new VVG(),
-                1 => new Kovalski(),
-                2 => new ArkhimagCplusplus(),
-                3 => new PestovCminusminus()
+                0 => new VVG(100, random.Next(3, 100), random.Next(3, 100), "VVG python king"),
+                1 => new Kovalski(100, random.Next(3, 100), random.Next(3, 100), "Kovalski"),
+                2 => new ArkhimagCplusplus(100, random.Next(3, 100), random.Next(3, 100), "onet c++"),
+                3 => new PestovCminusminus(100, random.Next(3, 100), random.Next(3, 100), "onet c--")
             };
         }
 
         int enemyType = random.Next(3);
         return enemyType switch
         {
-            0 => new Goblin(),
-            1 => new Skelet(),
-            2 => new Mag()
+            0 => new Goblin(100, random.Next(3, 100), random.Next(3, 100), "Goblin"),
+            1 => new Skelet(100, random.Next(3, 100), random.Next(3, 100), "Skelet"),
+            2 => new Mag(100, random.Next(3, 100), random.Next(3, 100), "Mag")
         };
     }
 
@@ -491,7 +497,7 @@ class Program
             Game game = new Game();
             game.Start();
 
-            Console.Write("\nХотите сыграть еще раз? (y/n): ");
+            Console.Write("Another riund? (y/n): ");
             string choice = Console.ReadLine().ToLower();
             if (choice != "y" && choice != "д")
             {
@@ -499,6 +505,6 @@ class Program
             }
         }
 
-        Console.WriteLine("Спасибо за игру!");
+        Console.WriteLine("bb!");
     }
 }
