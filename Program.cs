@@ -473,6 +473,7 @@ public class Game
         {
             Console.WriteLine("uve lost lelele...");
         }
+
     }
 
     private void ContinueGame()
