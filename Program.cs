@@ -125,7 +125,7 @@ public class Enemy
         this.name = name;
     }
     public Random Rand = new Random();
-    public virtual void attack(Player player)
+    public virtual void Attack(Player player)
     {
         int damage = Rand.Next(3, atk);
         player.TakeDamage(damage);
@@ -149,7 +149,7 @@ public class Goblin : Enemy
     }
 
     double critChance = 0.2;
-    public override void attack(Player player)
+    public override void Attack(Player player)
     {
         bool isCrit = Rand.NextDouble() < critChance;
         int damage = Convert.ToInt32(Rand.Next(3, atk));
@@ -175,7 +175,7 @@ public class Skelet : Enemy
         this.atk = atk;
         this.name = name;
     }
-    public override void attack(Player player)
+    public override void Attack(Player player)
     {
         int damage = Rand.Next(3, atk);
         Console.WriteLine($"{name} is aattacking and he don`t give a damn abt ur def!");
@@ -196,7 +196,7 @@ public class Mag : Enemy
     }
 
     double freezeChance = 0.2;
-    public override void attack(Player player)
+    public override void Attack(Player player)
     {
         bool isFrozen = Rand.NextDouble() < freezeChance;
         int damage = Convert.ToInt32(Rand.Next(3, atk));
@@ -223,7 +223,7 @@ public class VVG: Goblin
     }
 
     double critChance = 0.3;
-    public override void attack(Player player)
+    public override void Attack(Player player)
     {
         bool isCrit = Rand.NextDouble() < critChance;
         int damage = Convert.ToInt32(Rand.Next(3, atk) * 1.5);
@@ -249,7 +249,7 @@ public class Kovalski : Skelet
         this.name = name;
     }
 
-    public override void attack(Player player)
+    public override void Attack(Player player)
     {
         int damage = Convert.ToInt32(Rand.Next(3, atk) * 1.3);
         Console.WriteLine($"{name} is aattacking and he don`t give a damn abt ur def!");
@@ -269,7 +269,7 @@ public class ArkhimagCplusplus : Mag
     }
 
     double freezeChance = 0.3;
-    public override void attack(Player player)
+    public override void Attack(Player player)
     {
         bool isFrozen = Rand.NextDouble() < freezeChance;
         int damage = Convert.ToInt32(Rand.Next(3, atk) * 1.6);
@@ -295,7 +295,7 @@ public class ArkhimagCplusplus : Mag
             this.name = name;
         }
         double freezeChance = 0.35;
-        public override void attack(Player player)
+        public override void Attack(Player player)
         {
             bool isFrozen = Rand.NextDouble() < freezeChance;
             int damage = Convert.ToInt32(Rand.Next(3, atk) * 1.8);
@@ -439,7 +439,7 @@ public class Game
 
         if (enemy.hp <= 0)
         {
-            Console.WriteLine($"U won {enemy.Name}!");
+            Console.WriteLine($"U won {enemy.name}!");
         }
     }
 
@@ -471,7 +471,7 @@ public class Game
 
         if (player.hp <= 0)
         {
-            Console.WriteLine("Вы погибли...");
+            Console.WriteLine("uve lost lelele...");
         }
     }
 
