@@ -20,9 +20,8 @@ namespace ForBD
             this.DetailsGarage = new HashSet<DetailsGarage>();
         }
     
-        public int StorageID { get; set; }
-        public int DetailID { get; set; }
-        public int Quantity { get; set; }
+        public int ID { get; set; }
+        public int Balance { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailsGarage> DetailsGarage { get; set; }

@@ -14,9 +14,10 @@ namespace ForBD
     
     public partial class DetailsGarage
     {
-        public int DetailsGarageID { get; set; }
+        public int ID { get; set; }
         public int DetailID { get; set; }
         public int StorageID { get; set; }
+        public int Count { get; set; }
     
         public virtual Details Details { get; set; }
         public virtual Storage Storage { get; set; }
