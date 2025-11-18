@@ -84,9 +84,12 @@ namespace ConsoleApp1
 
         }
         //shows info
-        public void ShowUpDetails(DetailsGarage Det)
+        public void ShowUpDetails(DetailsGarage Det, List<DetailsGarage> listall)
         {
-            Console.WriteLine($"ID: {Det.DetailID} | Name: {Det.Details.Name} | Cost: {Det.Details.Cost} | Quantity: {Det.Count}");
+            foreach (DetailsGarage d in listall)
+            {
+                Console.WriteLine($"ID: {Det.DetailID} | Name: {Det.Details.Name} | Cost: {Det.Details.Cost} | Quantity: {Det.Count}");
+            }
         }
     }
     public class Car
