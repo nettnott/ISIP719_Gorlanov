@@ -14,7 +14,9 @@ namespace ConsoleApp1
     {
         List<Details> listdetails = Core.Context.Details.ToList();
         List<Storage> liststorage = Core.Context.Storage.ToList();
-        
+        List<DetailsGarage> listall = Core.Context.DetailsGarage.ToList();
+
+
         static void Work(string[] args)
         {
             Console.WriteLine("");
@@ -42,7 +44,7 @@ namespace ConsoleApp1
             this.moneyBalance = moneyBalance;
         }
 
-        public void BuyDetail(List<Details> details)
+        public void BuyDetail(DetailsGarage Det, List<DetailsGarage> listall)
         {
             Console.WriteLine("input a number of the detail u want to buy");
             int choice = Convert.ToInt32(Console.ReadLine());
@@ -50,30 +52,20 @@ namespace ConsoleApp1
             int quantity = Convert.ToInt32(Console.ReadLine());
             if ((choice <= 10) & (choice >= 0) & (quantity > 0))
             {
-
-                /*Details selectedDetail = details[choice];
-                double totalCost = Core.Context.Details.Cost * quantity;
+                DetailsGarage selectedDetaiil = listall[choice];
+                double totalCost = Convert.ToDouble(Det.Details.Cost * quantity);
 
                 if (moneyBalance >= totalCost)
                 {
                     moneyBalance -= totalCost;
-
-                    // Обновление баланса деталей
-                    if (quantity.ContainsKey(selectedDetail))
-                    {
-                        quantity[selectedDetail] += quantity;
-                    }
-                    else
-                    {
-                        quantity.Add(selectedDetail, quantity);
-                    }
-
-                    Console.WriteLine($"Successfully bought {quantity} of {selectedDetail.Name}");
+                     = from p in listall where p.ElementAt(choice);
+                    //Det.Storage.Add()
+                    Console.WriteLine($"successfully bought {quantity} of {listall[choice].Details.Name}");
                 }
                 else
                 {
-                    Console.WriteLine("Not enough money!");
-                }*/
+                    Console.WriteLine("not enough money!");
+                }
             }
             else
             {
