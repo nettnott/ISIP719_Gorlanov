@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-
-
+    public static class Randoms
+    {
+        public static Random Rand = new Random();
+    }
     public class Game
     {
         List<Details> listdetails = Core.Context.Details.ToList();
@@ -17,7 +19,7 @@ namespace ConsoleApp1
         List<DetailsGarage> listall = Core.Context.DetailsGarage.ToList();
 
 
-        static void Work(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("");
 
@@ -32,7 +34,22 @@ namespace ConsoleApp1
                     break;
 
             }
+
         }
+        public void NewClient()
+        {
+            int clientid = Randoms.Rand.Next(listall.Count());
+
+        }
+    }
+
+    public class Client
+    {
+        public int clientid;
+        public string name;
+        public DetailsGarage brokenDetail;
+        
+        
     }
     public class Player
     {
@@ -92,9 +109,4 @@ namespace ConsoleApp1
             }
         }
     }
-    public class Car
-    {
-
-    }
-
 }
