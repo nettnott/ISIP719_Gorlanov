@@ -101,11 +101,9 @@ namespace ConsoleApp1
 
     class Program
     {
-        // Инициализация игрока, склада, деталей (как на схеме)
         static int choice;
         static int choice2;
-        // Здесь должны быть ваши переменные баланса, деталей, склада и т.д.
-        static Player player = new Player("sasalele", 56300);
+        static Player player = new Player("sasalele", 5630);
 
         static void Main(string[] args)
         {
@@ -120,7 +118,7 @@ namespace ConsoleApp1
                 string input = Console.ReadLine();
                 if (!int.TryParse(input, out choice))
                 {
-                    Console.WriteLine("Некорректный ввод. Попробуйте еще раз.");
+                    Console.WriteLine("incorrect input, try again");
                     choice = 0; // Сбрасываем выбор, чтобы продолжить цикл
                     continue;
                 }
@@ -129,7 +127,7 @@ namespace ConsoleApp1
                 switch (choice)
                 {
                     case 1: // Выход склада (условный блок 1 на схеме)
-                        ExitStock();
+                        ShowStock();
                         choice = 0; // Возврат в главный цикл
                         break;
                     case 2: // Покупка Деталей (условный блок 2 на схеме)
@@ -141,11 +139,11 @@ namespace ConsoleApp1
                         choice = 0; // Возврат в главный цикл
                         break;
                     case 9: // Выход из программы (пользовательский выбор)
-                        Console.WriteLine("Выход из программы.");
+                        Console.WriteLine("Exit");
                         choice = -1; // Устанавливаем значение, отличное от 0, чтобы выйти из while
                         break;
                     default:
-                        Console.WriteLine("Неизвестный выбор.");
+                        Console.WriteLine("There`s no such a choice, choose normally");
                         choice = 0; // Продолжить цикл
                         break;
                 }
@@ -170,7 +168,7 @@ namespace ConsoleApp1
             Console.Write("Введите ваш выбор: ");
         }
 
-        static void ExitStock()
+        static void ShowStock()
         {
             Console.WriteLine("Вы покинули склад. Возврат в главное меню.");
         }
