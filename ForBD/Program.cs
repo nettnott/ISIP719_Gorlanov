@@ -3,6 +3,7 @@ using ForBD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,98 +19,16 @@ namespace ConsoleApp1
         List<Storage> liststorage = Core.Context.Storage.ToList();
         List<DetailsGarage> listall = Core.Context.DetailsGarage.ToList();
 
-
-        static void Main(string[] args)
-        {
-            Console.WriteLine("");
-
-            string choice = Console.ReadLine();
-            switch (choice)
-            {
-                case "1":
-                    break;
-                case "2":
-                    break;
-                case "3":
-                    break;
-
-            }
-
-        }
-        public void NewClient()
-        {
-            int clientid = Randoms.Rand.Next(listall.Count());
-
-        }
-    }
-
-    public class Client
-    {
-        public int clientid;
-        public string name;
-        public DetailsGarage brokenDetail;
-        
-        
-    }
-    public class Player
-    {
-        public string Imya;
-        public double moneyBalance;
-        public Player(string name, double moneyBalance)
-        {
-            this.Imya = name;
-            this.moneyBalance = moneyBalance;
-        }
-
-        public void BuyDetail(DetailsGarage Det, List<DetailsGarage> listall)
-        {
-            Console.WriteLine("input a number of the detail u want to buy");
-            int choice = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("input a quantity");
-            int quantity = Convert.ToInt32(Console.ReadLine());
-            if ((choice <= listall.Count()) & (quantity > 0))
-            {
-                DetailsGarage selectedDetail = listall[choice];
-                double totalCost = Convert.ToDouble(Det.Details.Cost * quantity);
-                Console.WriteLine($"successfully bought {quantity} of {listall[choice].Details.Name}");
-            }
-            else
-            {
-                Console.WriteLine("input correct value");
-            }
-        }
-
-    }
-    public class Detail
-    {
-        public int DetailID;
-        public string Name;
-        public double Cost;
-        public Detail()
-        {
-
-        }
-        //shows info
-        public void ShowUpDetails(DetailsGarage Det, List<DetailsGarage> listall)
-        {
-            foreach (DetailsGarage d in listall)
-            {
-                Console.WriteLine($"ID: {Det.DetailID} | Name: {Det.Details.Name} | Cost: {Det.Details.Cost} | Quantity: {Det.Count}");
-            }
-        }
-    }
-
-    class Program
-    {
         static int choice;
         static int choice2;
         static Player player = new Player("sasalele", 5630);
 
-        static void Main(string[] args)
+        public void Main(string[] args, List<Details> listdetails, List<Storage> liststorage, List<DetailsGarage> listall)
         {
+            Detail d = new Detail();
             // Основной цикл while, условие choice == 0 является условием выхода (Конец)
             while (choice == 52) // Условие на схеме "choice == 0" ведет к "true" (Конец), 
-                                // поэтому цикл продолжается пока choice == 0 или пока не будет введено другое значение
+                                 // поэтому цикл продолжается пока choice == 0 или пока не будет введено другое значение
             {
                 Console.WriteLine("--- MENU ---");
                 Console.WriteLine("1. See the storage");
@@ -131,7 +50,7 @@ namespace ConsoleApp1
                 switch (choice)
                 {
                     case 1: // Выход склада (условный блок 1 на схеме)
-                        ShowStock();
+                        d.ShowUpDetails(listall);
                         choice = 52; // Возврат в главный цикл
                         break;
                     case 2: // Покупка Деталей (условный блок 2 на схеме)
@@ -154,17 +73,9 @@ namespace ConsoleApp1
 
                 // Если choice не 0, цикл завершается
             }
-
-            // Конец (выход из приложения)
-            Console.WriteLine("That`s all");
         }
 
         // --- Методы, соответствующие блокам на схеме ---
-
-        static void ShowStock()
-        {
-            Console.WriteLine("Вы покинули склад. Возврат в главное меню.");
-        }
 
         static void PurchaseDetails()
         {
@@ -222,5 +133,67 @@ namespace ConsoleApp1
             Console.WriteLine("Клиенту отказано в обслуживании. Выдача штрафа.");
             player.moneyBalance -= 200; // Штраф за отказ
         }
+        public void NewClient()
+        {
+            int clientid = Randoms.Rand.Next(listall.Count());
+
+        }
     }
+
+    public class Client
+    {
+        public int clientid;
+        public string name;
+        public DetailsGarage brokenDetail;
+        
+        
+    }
+    public class Player
+    {
+        public string Imya;
+        public double moneyBalance;
+        public Player(string name, double moneyBalance)
+        {
+            this.Imya = name;
+            this.moneyBalance = moneyBalance;
+        }
+
+        public void BuyDetail(DetailsGarage Det, List<DetailsGarage> listall)
+        {
+            Console.WriteLine("input a number of the detail u want to buy");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("input a quantity");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if ((choice <= listall.Count()) & (quantity > 0))
+            {
+                DetailsGarage selectedDetail = listall[choice];
+                double totalCost = Convert.ToDouble(Det.Details.Cost * quantity);
+                Console.WriteLine($"successfully bought {quantity} of {listall[choice].Details.Name}");
+            }
+            else
+            {
+                Console.WriteLine("input correct value");
+            }
+        }
+
+    }
+    public class Detail
+    {
+        public int DetailID;
+        public string Name;
+        public double Cost;
+        public Detail()
+        {
+
+        }
+        //shows info
+        public void ShowUpDetails(List<DetailsGarage> listall)
+        {
+            foreach (DetailsGarage Det in listall)
+            {
+                Console.WriteLine($"ID: {Det.DetailID} | Name: {Det.Details.Name} | Cost: {Det.Details.Cost} | Quantity: {Det.Count}");
+            }
+        }
+    }
+
 }
