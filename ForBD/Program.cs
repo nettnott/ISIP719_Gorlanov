@@ -67,22 +67,11 @@ namespace ConsoleApp1
             int choice = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("input a quantity");
             int quantity = Convert.ToInt32(Console.ReadLine());
-            if ((choice <= 10) & (choice >= 0) & (quantity > 0))
+            if ((choice <= listall.Count()) & (quantity > 0))
             {
-                DetailsGarage selectedDetaiil = listall[choice];
+                DetailsGarage selectedDetail = listall[choice];
                 double totalCost = Convert.ToDouble(Det.Details.Cost * quantity);
-
-                if (moneyBalance >= totalCost)
-                {
-                    moneyBalance -= totalCost;
-                     = from p in listall where p.ElementAt(choice);
-                    //Det.Storage.Add()
-                    Console.WriteLine($"successfully bought {quantity} of {listall[choice].Details.Name}");
-                }
-                else
-                {
-                    Console.WriteLine("not enough money!");
-                }
+                Console.WriteLine($"successfully bought {quantity} of {listall[choice].Details.Name}");
             }
             else
             {
@@ -107,6 +96,140 @@ namespace ConsoleApp1
             {
                 Console.WriteLine($"ID: {Det.DetailID} | Name: {Det.Details.Name} | Cost: {Det.Details.Cost} | Quantity: {Det.Count}");
             }
+        }
+    }
+
+    class Program
+    {
+        // Инициализация игрока, склада, деталей (как на схеме)
+        static int choice;
+        static int choice2;
+        // Здесь должны быть ваши переменные баланса, деталей, склада и т.д.
+        static Player player = new Player("sasalele", 56300);
+
+        static void Main(string[] args)
+        {
+            // Основной цикл while, условие choice == 0 является условием выхода (Конец)
+            while (choice == 0) // Условие на схеме "choice == 0" ведет к "true" (Конец), 
+                                // поэтому цикл продолжается пока choice == 0 или пока не будет введено другое значение
+            {
+                // Вывод меню()
+                DisplayMenu();
+
+                // Ввод с клавиатуры (choice)
+                string input = Console.ReadLine();
+                if (!int.TryParse(input, out choice))
+                {
+                    Console.WriteLine("Некорректный ввод. Попробуйте еще раз.");
+                    choice = 0; // Сбрасываем выбор, чтобы продолжить цикл
+                    continue;
+                }
+
+                // Switch choice
+                switch (choice)
+                {
+                    case 1: // Выход склада (условный блок 1 на схеме)
+                        ExitStock();
+                        choice = 0; // Возврат в главный цикл
+                        break;
+                    case 2: // Покупка Деталей (условный блок 2 на схеме)
+                        PurchaseDetails();
+                        choice = 0; // Возврат в главный цикл
+                        break;
+                    case 3: // Работа с заказом (условный блок 3 на схеме)
+                        HandleOrder();
+                        choice = 0; // Возврат в главный цикл
+                        break;
+                    case 9: // Выход из программы (пользовательский выбор)
+                        Console.WriteLine("Выход из программы.");
+                        choice = -1; // Устанавливаем значение, отличное от 0, чтобы выйти из while
+                        break;
+                    default:
+                        Console.WriteLine("Неизвестный выбор.");
+                        choice = 0; // Продолжить цикл
+                        break;
+                }
+
+                // Если choice не 0, цикл завершается
+            }
+
+            // Конец (выход из приложения)
+            Console.WriteLine("Программа завершена.");
+        }
+
+        // --- Методы, соответствующие блокам на схеме ---
+
+        static void DisplayMenu()
+        {
+            // Вывод в консоль (как на схеме)
+            Console.WriteLine("\n=== Главное меню Автосервиса ===");
+            Console.WriteLine("1. Выход со склада");
+            Console.WriteLine("2. Покупка деталей");
+            Console.WriteLine("3. Работа с заказом (Клиент)");
+            Console.WriteLine("9. Выход из игры");
+            Console.Write("Введите ваш выбор: ");
+        }
+
+        static void ExitStock()
+        {
+            Console.WriteLine("Вы покинули склад. Возврат в главное меню.");
+        }
+
+        static void PurchaseDetails()
+        {
+            Console.WriteLine("Меню закупки деталей. (Логика покупки здесь...)");
+        }
+
+        static void HandleOrder()
+        {
+            // Симуляция приезда клиента
+            Console.WriteLine("\nПриехал новый клиент!");
+
+            // Выбор (отказ/принятие) заказа (как на схеме)
+            Console.Write("Принять заказ? (1 - Да, 2 - Нет): ");
+            string input2 = Console.ReadLine();
+            if (!int.TryParse(input2, out choice2))
+            {
+                Console.WriteLine("Некорректный ввод.");
+                return; // Возврат в главное меню
+            }
+
+            // choice2-1 (проверка, как на схеме)
+            if (choice2 == 1) // true ветка
+            {
+                // Метод: Проверка наличия детали (как на схеме)
+                CheckPartAvailability();
+            }
+            else // false ветка
+            {
+                // Метод: Выдача штрафа отк(аз) (как на схеме)
+                IssueRefusalPenalty();
+            }
+        }
+
+        static void CheckPartAvailability()
+        {
+            // Эта логика должна взаимодействовать с вашими данными склада
+            Console.WriteLine("Проверка наличия необходимой детали на складе...");
+            bool hasPart = false; // Заглушка, замените на вашу логику
+
+            if (hasPart)
+            {
+                Console.WriteLine("Деталь есть. Ремонт выполнен успешно.");
+                player.moneyBalance += 1000; // Пример
+            }
+            else
+            {
+                Console.WriteLine("Детали нет. Принят неправильный заказ.");
+                // Логика штрафа за неправильный ремонт из вашего описания
+                player.moneyBalance -= 1500; // Пример
+            }
+        }
+
+        static void IssueRefusalPenalty()
+        {
+            Console.WriteLine("Клиенту отказано в обслуживании. Выдача штрафа.");
+            player.moneyBalance -= 200; // Штраф за отказ
         }
     }
 }
