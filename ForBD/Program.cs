@@ -23,7 +23,7 @@ namespace ConsoleApp1
         static int choice2;
         static Player player = new Player("sasalele", 5630);
 
-        public void Main(string[] args, List<Details> listdetails, List<Storage> liststorage, List<DetailsGarage> listall)
+        public void Main(Player player, List<Details> listdetails, List<Storage> liststorage, List<DetailsGarage> listall)
         {
             Detail d = new Detail();
             // Основной цикл while, условие choice == 0 является условием выхода (Конец)
@@ -54,7 +54,7 @@ namespace ConsoleApp1
                         choice = 52; // Возврат в главный цикл
                         break;
                     case 2: // Покупка Деталей (условный блок 2 на схеме)
-                        PurchaseDetails();
+                        player.BuyDetail(listall);
                         choice = 52; // Возврат в главный цикл
                         break;
                     case 3: // Работа с заказом (условный блок 3 на схеме)
@@ -76,11 +76,6 @@ namespace ConsoleApp1
         }
 
         // --- Методы, соответствующие блокам на схеме ---
-
-        static void PurchaseDetails()
-        {
-            Console.WriteLine("Меню закупки деталей. (Логика покупки здесь...)");
-        }
 
         static void HandleOrder()
         {
@@ -158,8 +153,9 @@ namespace ConsoleApp1
             this.moneyBalance = moneyBalance;
         }
 
-        public void BuyDetail(DetailsGarage Det, List<DetailsGarage> listall)
+        public void BuyDetail(List<DetailsGarage> listall)
         {
+            DetailsGarage Det = new DetailsGarage();
             Console.WriteLine("input a number of the detail u want to buy");
             int choice = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("input a quantity");
