@@ -15,9 +15,9 @@ namespace ConsoleApp1
     }
     public class Game
     {
-        List<Details> listdetails = Core.Context.Details.ToList();
-        List<Storage> liststorage = Core.Context.Storage.ToList();
-        List<DetailsGarage> listall = Core.Context.DetailsGarage.ToList();
+        public static List<Details> listdetails = Core.Context.Details.ToList();
+        public static List<Storage> liststorage = Core.Context.Storage.ToList();
+        public static List<DetailsGarage> listall = Core.Context.DetailsGarage.ToList();
 
         static int choice;
         static int choice2;
@@ -72,7 +72,7 @@ namespace ConsoleApp1
 
         static void HandleOrder()
         {
-            // Симуляция приезда клиента
+            Client.NewVisitor(Game.listdetails);
 
             // Выбор (отказ/принятие) заказа (как на схеме)
             Console.Write("Accept the order? (1 - Yes, 2 - Nah): ");
@@ -119,25 +119,16 @@ namespace ConsoleApp1
             Console.WriteLine("Клиенту отказано в обслуживании. Выдача штрафа.");
             player.moneyBalance -= 200; // Штраф за отказ
         }
-        public void NewClient()
-        {
-            int clientid = Randoms.Rand.Next(listall.Count());
-
-        }
     }
 
-    public class Client
+    public static class Client
     {
         public static string name = ClientsNames[Randoms.Rand.Next(ClientsNames.Count())];
-        public static DetailsGarage brokenDetail;
+        public static Details brokenDetail = Game.listdetails[Randoms.Rand.Next(Game.listdetails.Count())];
 
         public static List<string> ClientsNames = new List<string> { "Sanya", "Danya", "Dima", "Diana", "NATO", "Apelsin Orechovich", "GVV", "Kovalskiy", "1Cfan", "Nastiks", "Nasosalchik" };
-        public Client()
-        {
 
-        }
-
-        public void NewVisitor(List<Details> listdetails)
+        public static void NewVisitor(List<Details> listdetails)
         {
             Console.WriteLine("There`s a new client!");
             Console.WriteLine($"Name: {Client.name} | Broken detail: {Client.brokenDetail}");
