@@ -26,78 +26,69 @@ namespace ConsoleApp1
         public void Main(Player player, List<Details> listdetails, List<Storage> liststorage, List<DetailsGarage> listall)
         {
             Detail d = new Detail();
-            // Основной цикл while, условие choice == 0 является условием выхода (Конец)
-            while (choice == 52) // Условие на схеме "choice == 0" ведет к "true" (Конец), 
-                                 // поэтому цикл продолжается пока choice == 0 или пока не будет введено другое значение
+            
+            while (choice == 52) 
             {
                 Console.WriteLine("--- MENU ---");
                 Console.WriteLine("1. See the storage");
                 Console.WriteLine("2. Buy details");
                 Console.WriteLine("3. Start ur work");
-                Console.WriteLine("0. Выход из игры");
+                Console.WriteLine("0. Exit");
                 Console.Write("input ur choice: ");
 
-                // Ввод с клавиатуры (choice)
                 string input = Console.ReadLine();
                 if (!int.TryParse(input, out choice))
                 {
                     Console.WriteLine("incorrect input, try again");
-                    choice = 52; // Сбрасываем выбор, чтобы продолжить цикл
+                    choice = 52;
                     continue;
                 }
 
-                // Switch choice
                 switch (choice)
                 {
-                    case 1: // Выход склада (условный блок 1 на схеме)
+                    case 1:
                         d.ShowUpDetails(listall);
-                        choice = 52; // Возврат в главный цикл
+                        choice = 52;
                         break;
-                    case 2: // Покупка Деталей (условный блок 2 на схеме)
+                    case 2:
                         player.BuyDetail(listall);
-                        choice = 52; // Возврат в главный цикл
+                        choice = 52; 
                         break;
-                    case 3: // Работа с заказом (условный блок 3 на схеме)
+                    case 3: 
                         HandleOrder();
-                        choice = 52; // Возврат в главный цикл
+                        choice = 52;
                         break;
-                    case 0: // Выход из программы (пользовательский выбор)
+                    case 0:
                         Console.WriteLine("Exit");
-                        choice = 0; // Устанавливаем значение, отличное от 0, чтобы выйти из while
+                        choice = 0;
                         break;
                     default:
                         Console.WriteLine("There`s no such a choice, choose normally");
-                        choice = 52; // Продолжить цикл
+                        choice = 52;
                         break;
                 }
-
-                // Если choice не 0, цикл завершается
             }
         }
-
-        // --- Методы, соответствующие блокам на схеме ---
 
         static void HandleOrder()
         {
             // Симуляция приезда клиента
-            Console.WriteLine("\nПриехал новый клиент!");
 
             // Выбор (отказ/принятие) заказа (как на схеме)
-            Console.Write("Принять заказ? (1 - Да, 2 - Нет): ");
+            Console.Write("Accept the order? (1 - Yes, 2 - Nah): ");
             string input2 = Console.ReadLine();
             if (!int.TryParse(input2, out choice2))
             {
-                Console.WriteLine("Некорректный ввод.");
-                return; // Возврат в главное меню
+                Console.WriteLine("There`s no such a choice, choose normally");
+                return;
             }
 
-            // choice2-1 (проверка, как на схеме)
-            if (choice2 == 1) // true ветка
+            if (choice2 == 1)
             {
                 // Метод: Проверка наличия детали (как на схеме)
                 CheckPartAvailability();
             }
-            else // false ветка
+            else
             {
                 // Метод: Выдача штрафа отк(аз) (как на схеме)
                 IssueRefusalPenalty();
@@ -137,11 +128,20 @@ namespace ConsoleApp1
 
     public class Client
     {
-        public int clientid;
-        public string name;
-        public DetailsGarage brokenDetail;
-        
-        
+        public static string name = ClientsNames[Randoms.Rand.Next(ClientsNames.Count())];
+        public static DetailsGarage brokenDetail;
+
+        public static List<string> ClientsNames = new List<string> { "Sanya", "Danya", "Dima", "Diana", "NATO", "Apelsin Orechovich", "GVV", "Kovalskiy", "1Cfan", "Nastiks", "Nasosalchik" };
+        public Client()
+        {
+
+        }
+
+        public void NewVisitor(List<Details> listdetails)
+        {
+            Console.WriteLine("There`s a new client!");
+            Console.WriteLine($"Name: {Client.name} | Broken detail: {Client.brokenDetail}");
+        }
     }
     public class Player
     {
@@ -182,7 +182,6 @@ namespace ConsoleApp1
         {
 
         }
-        //shows info
         public void ShowUpDetails(List<DetailsGarage> listall)
         {
             foreach (DetailsGarage Det in listall)
