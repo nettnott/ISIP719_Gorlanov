@@ -23,7 +23,7 @@ namespace ConsoleApp1
         static int choice2;
         static Player player = new Player("sasalele", 5630);
 
-        public void Main(Player player, List<Details> listdetails, List<Storage> liststorage, List<DetailsGarage> listall)
+        public static void Main(Player player, List<Details> listdetails, List<Storage> liststorage, List<DetailsGarage> listall)
         {
             Detail d = new Detail();
             
@@ -74,7 +74,6 @@ namespace ConsoleApp1
         {
             Client.NewVisitor(Game.listdetails);
 
-            // Выбор (отказ/принятие) заказа (как на схеме)
             Console.Write("Accept the order? (1 - Yes, 2 - Nah): ");
             string input2 = Console.ReadLine();
             if (!int.TryParse(input2, out choice2))
@@ -85,32 +84,35 @@ namespace ConsoleApp1
 
             if (choice2 == 1)
             {
-                // Метод: Проверка наличия детали (как на схеме)
                 CheckPartAvailability();
             }
             else
             {
-                // Метод: Выдача штрафа отк(аз) (как на схеме)
                 IssueRefusalPenalty();
             }
         }
 
         static void CheckPartAvailability()
         {
-            // Эта логика должна взаимодействовать с вашими данными склада
-            Console.WriteLine("Проверка наличия необходимой детали на складе...");
-            bool hasPart = false; // Заглушка, замените на вашу логику
-
-            if (hasPart)
+            bool hasPart = false;
+            if ((listall.Where(p => p.DetailID == Client.brokenDetail.ID).Count() < 0))
             {
-                Console.WriteLine("Деталь есть. Ремонт выполнен успешно.");
-                player.moneyBalance += 1000; // Пример
+                hasPart = false;
             }
             else
             {
-                Console.WriteLine("Детали нет. Принят неправильный заказ.");
-                // Логика штрафа за неправильный ремонт из вашего описания
-                player.moneyBalance -= 1500; // Пример
+                hasPart = true;
+            }
+
+            if (hasPart)
+            {
+                Console.WriteLine("Suuccesfully");
+                player.moneyBalance += 1000;
+            }
+            else
+            {
+                Console.WriteLine("Theres no such a detail");
+                player.moneyBalance -= 1500;
             }
         }
 
