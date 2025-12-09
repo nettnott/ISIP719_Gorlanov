@@ -7,7 +7,7 @@
       <Diagram DiagramId="1ef4c65b61f54d018832ba025c286360" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="pr7rpmModel.Details" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="pr7rpmModel.DetailsGarage" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="pr7rpmModel.Storage" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="pr7rpmModel.Storage" Width="1.5" PointX="0.875" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="pr7rpmModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="pr7rpmModel.FK_DetailsGarage_Details" ManuallyRouted="false" />
         <AssociationConnector Association="pr7rpmModel.FK_DetailsGarage_Storage" ManuallyRouted="false" />

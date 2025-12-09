@@ -21,7 +21,7 @@ namespace ForBD
         }
     
         public int ID { get; set; }
-        public int Balance { get; set; }
+        public decimal Balance { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailsGarage> DetailsGarage { get; set; }

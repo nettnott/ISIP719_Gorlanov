@@ -9,6 +9,10 @@ namespace ConsoleApp1
 {
     public class Core
     {
-        public static pr7rpmEntities Context = new pr7rpmEntities();
+        public static pr7rpmEntities1 Context = new pr7rpmEntities1();
+
     }
+
+
+
 }
