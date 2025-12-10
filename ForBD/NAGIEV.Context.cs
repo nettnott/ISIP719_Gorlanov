@@ -13,10 +13,10 @@ namespace ForBD
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class pr7rpmEntities1 : DbContext
+    public partial class PrEghtEntities : DbContext
     {
-        public pr7rpmEntities1()
-            : base("name=pr7rpmEntities1")
+        public PrEghtEntities()
+            : base("name=PrEghtEntities")
         {
         }
     
@@ -25,9 +25,12 @@ namespace ForBD
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Details> Details { get; set; }
-        public virtual DbSet<DetailsGarage> DetailsGarage { get; set; }
-        public virtual DbSet<Storage> Storage { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderProduct> OrderProduct { get; set; }
+        public virtual DbSet<PointOfDelivery> PointOfDelivery { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<ProductCar> ProductCar { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

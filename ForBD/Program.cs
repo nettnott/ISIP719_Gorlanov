@@ -8,6 +8,12 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+// Регистрация
+// 1. Создать экземпляр класса пользователя из БД
+// 2. Попросить пользователя заполнить экземпляр данными
+// 3. Проверить не занят ли логин(почта/телефон) введённый пользователем пользователя
+// 4. Если все прошло успешно добавить пользователя и войти в аккаунт\вернутся в меню
+
 namespace ConsoleApp1
 {
 
@@ -15,256 +21,264 @@ namespace ConsoleApp1
     {
         public static void Main(string[] args)
         {
-            Game.Sasalele();
+            Nagiev.Sasalele();
         }
     }
 
-    public static class Game
+    public static class Nagiev
     {
-        public static Random rand = new Random();
-        public static List<Storage> storages = Core.Context.Storage.ToList();
-        public static Storage storgs = storages[0];
-        public static List<DetailsGarage> detailsGarages = Core.Context.DetailsGarage.ToList();
-        public static List<Details> details = Core.Context.Details.ToList();
-
-        public static bool buyflag;
-        public static int carscount;
-        public static int quantity;
-        public static int choiceB;   
-
         public static void Sasalele()
         {
 
-            int choice = 0;
-                while (choice != 52 & storgs.Balance > 0)
-                {
-                    Console.Clear();
+        }
+    }
+}
+    //public static class Game
+    //{
+    //    public static Random rand = new Random();
+    //    public static List<Storage> storages = Core.Context.Storage.ToList();
+    //    public static Storage storgs = storages[0];
+    //    public static List<DetailsGarage> detailsGarages = Core.Context.DetailsGarage.ToList();
+    //    public static List<Details> details = Core.Context.Details.ToList();
 
-                if (buyflag)
-                {
-                    if (carscount > 0 & carscount <= 2)
-                    {
-                        Console.WriteLine($"U will receive ur item after handling {carscount} cars");
-                    }
-                    if (carscount < 0)
-                    {
-                        AddingDetail(quantity, choiceB);
-                        Console.WriteLine("Your detail is finally there!");
-                    }
-                    carscount -= 1;
-                    Console.ReadKey();
-                }
+    //    public static bool buyflag;
+    //    public static int carscount;
+    //    public static int quantity;
+    //    public static int choiceB;   
 
-                Console.WriteLine("--- MENU ---");
-                    Console.WriteLine("1. See the storage");
-                    Console.WriteLine("2. Buy details");
-                    Console.WriteLine("3. Start ur work");
-                    Console.WriteLine("52. Exit");
-                    Console.Write("input ur choice: ");
+    //    public static void Sasalele()
+    //    {
 
-                string input = Console.ReadLine();
+    //        int choice = 0;
+    //            while (choice != 52 & storgs.Balance > 0)
+    //            {
+    //                Console.Clear();
 
-                    if (!int.TryParse(input, out choice))
-                    {
-                        Console.WriteLine("incorrect input, try again");
-                        //choice = 52;
-                        continue;
-                    }
+    //            if (buyflag)
+    //            {
+    //                if (carscount > 0 & carscount <= 2)
+    //                {
+    //                    Console.WriteLine($"U will receive ur item after handling {carscount} cars");
+    //                }
+    //                if (carscount < 0)
+    //                {
+    //                    AddingDetail(quantity, choiceB);
+    //                    Console.WriteLine("Your detail is finally there!");
+    //                }
+    //                carscount -= 1;
+    //                Console.ReadKey();
+    //            }
+
+    //            Console.WriteLine("--- MENU ---");
+    //                Console.WriteLine("1. See the storage");
+    //                Console.WriteLine("2. Buy details");
+    //                Console.WriteLine("3. Start ur work");
+    //                Console.WriteLine("52. Exit");
+    //                Console.Write("input ur choice: ");
+
+    //            string input = Console.ReadLine();
+
+    //                if (!int.TryParse(input, out choice))
+    //                {
+    //                    Console.WriteLine("incorrect input, try again");
+    //                    //choice = 52;
+    //                    continue;
+    //                }
                     
-                    switch (choice)
-                    {
-                        case 1:
-                            PrintDetailOnSklad();
-                            Console.ReadKey();
-                            //choice = 52;
-                            break;
-                        case 2:
-                            BayProduct();
-                            Console.ReadKey();
-                            //choice = 52;
-                            break;
-                        case 3:
-                            Client.NewVisitor();
-                            HandleOrder();
-                            Console.ReadKey();
-                            //choice = 52;
-                            break;
-                        case 0:
-                            Console.WriteLine("Exit");
-                            Console.WriteLine($"U`ve finished with {storgs.Balance} money in ur pocket");
-                            Console.ReadKey();
-                            choice = 52;
-                            break;
-                        default:
-                            Console.WriteLine("There`s no such a choice, choose normally");
-                            Console.ReadKey();
-                            //choice = 52;
-                            break;
-                    }
-                }
-            Console.Clear();
-            Console.WriteLine($"U lose! Ur balance is {storgs.Balance}");
-            Console.ReadKey();
-        }
+    //                switch (choice)
+    //                {
+    //                    case 1:
+    //                        PrintDetailOnSklad();
+    //                        Console.ReadKey();
+    //                        //choice = 52;
+    //                        break;
+    //                    case 2:
+    //                        BayProduct();
+    //                        Console.ReadKey();
+    //                        //choice = 52;
+    //                        break;
+    //                    case 3:
+    //                        Client.NewVisitor();
+    //                        HandleOrder();
+    //                        Console.ReadKey();
+    //                        //choice = 52;
+    //                        break;
+    //                    case 0:
+    //                        Console.WriteLine("Exit");
+    //                        Console.WriteLine($"U`ve finished with {storgs.Balance} money in ur pocket");
+    //                        Console.ReadKey();
+    //                        choice = 52;
+    //                        break;
+    //                    default:
+    //                        Console.WriteLine("There`s no such a choice, choose normally");
+    //                        Console.ReadKey();
+    //                        //choice = 52;
+    //                        break;
+    //                }
+    //            }
+    //        Console.Clear();
+    //        Console.WriteLine($"U lose! Ur balance is {storgs.Balance}");
+    //        Console.ReadKey();
+    //    }
 
-        public static void PrintDetailOnSklad()
-        {
-            Console.WriteLine($"Ur balance is {storgs.Balance}");
-            foreach (var item in detailsGarages)
-                Console.WriteLine($"ID: {item.ID} | Name: {item.Details.Name} Cost: {item.Details.Cost} Quantity on sklad: {item.Count}");
-        }
+    //    public static void PrintDetailOnSklad()
+    //    {
+    //        Console.WriteLine($"Ur balance is {storgs.Balance}");
+    //        foreach (var item in detailsGarages)
+    //            Console.WriteLine($"ID: {item.ID} | Name: {item.Details.Name} Cost: {item.Details.Cost} Quantity on sklad: {item.Count}");
+    //    }
 
-        public static void PrintDetail()
-        {
-            foreach (var item in details)
-                Console.WriteLine($"ID: {item.ID} | Name: {item.Name} Cost: {item.Cost}");
-        }
+    //    public static void PrintDetail()
+    //    {
+    //        foreach (var item in details)
+    //            Console.WriteLine($"ID: {item.ID} | Name: {item.Name} Cost: {item.Cost}");
+    //    }
 
-        public static void BayProduct()
-        {
-            PrintDetail();
-            Console.WriteLine("Write down ID of the wanted detail");
-            choiceB = int.Parse(Console.ReadLine());
-            if ((choiceB <= details.Count()) & (choiceB > 0))
-            {
-                Console.WriteLine("input a quantity");
-                quantity = Convert.ToInt32(Console.ReadLine());
-                if (quantity > 0)
-                {
-                    var SelectToBuy = detailsGarages.FirstOrDefault(d => d.Details.ID == choiceB);
-                    Console.WriteLine($"Successfully bought {quantity} of {SelectToBuy.Details.Name}.");
-                }
-                else
-                {
-                    Console.WriteLine("input a correct value");
-                    buyflag = false;
-                }
-                buyflag = true;
-                carscount = 2;
-            }
-            else
-            {
-                Console.WriteLine("input a correct value");
-                buyflag = false;
-            }
-        }
+    //    public static void BayProduct()
+    //    {
+    //        PrintDetail();
+    //        Console.WriteLine("Write down ID of the wanted detail");
+    //        choiceB = int.Parse(Console.ReadLine());
+    //        if ((choiceB <= details.Count()) & (choiceB > 0))
+    //        {
+    //            Console.WriteLine("input a quantity");
+    //            quantity = Convert.ToInt32(Console.ReadLine());
+    //            if (quantity > 0)
+    //            {
+    //                var SelectToBuy = detailsGarages.FirstOrDefault(d => d.Details.ID == choiceB);
+    //                Console.WriteLine($"Successfully bought {quantity} of {SelectToBuy.Details.Name}.");
+    //            }
+    //            else
+    //            {
+    //                Console.WriteLine("input a correct value");
+    //                buyflag = false;
+    //            }
+    //            buyflag = true;
+    //            carscount = 2;
+    //        }
+    //        else
+    //        {
+    //            Console.WriteLine("input a correct value");
+    //            buyflag = false;
+    //        }
+    //    }
 
-        public static void AddingDetail(int quantity, int choiceB)
-        {
-            var SelectToBuy = detailsGarages.FirstOrDefault(d => d.Details.ID == choiceB);
-            if (SelectToBuy == null)
-            {
-                DetailsGarage Det = new DetailsGarage();
-                Det.StorageID = 1;
-                Det.DetailID = choiceB;
-                Det.Count = quantity;
-                int a = detailsGarages.Count();
-                Det.ID = a++;
-                Core.Context.DetailsGarage.Add(Det);
-                Core.Context.SaveChanges();
-            }
-            else
-            {
-                SelectToBuy.Count += quantity;
-                Core.Context.SaveChanges();
-            }
-            buyflag = false;
-        }
-        //public static void CarsCounter(bool bougtsmthnew, int carscount)
-        //{
-        //    if (bougtsmthnew)
-        //    {
-        //        if (carscount > 0 & carscount <= 2)
-        //        {
-        //            Console.WriteLine($"U will receive it after handling {carscount} cars");
-        //            carscount -= 1;
-        //        }
-        //    }
-        //}
+    //    public static void AddingDetail(int quantity, int choiceB)
+    //    {
+    //        var SelectToBuy = detailsGarages.FirstOrDefault(d => d.Details.ID == choiceB);
+    //        if (SelectToBuy == null)
+    //        {
+    //            DetailsGarage Det = new DetailsGarage();
+    //            Det.StorageID = 1;
+    //            Det.DetailID = choiceB;
+    //            Det.Count = quantity;
+    //            int a = detailsGarages.Count();
+    //            Det.ID = a++;
+    //            Core.Context.DetailsGarage.Add(Det);
+    //            Core.Context.SaveChanges();
+    //        }
+    //        else
+    //        {
+    //            SelectToBuy.Count += quantity;
+    //            Core.Context.SaveChanges();
+    //        }
+    //        buyflag = false;
+    //    }
+    //    //public static void CarsCounter(bool bougtsmthnew, int carscount)
+    //    //{
+    //    //    if (bougtsmthnew)
+    //    //    {
+    //    //        if (carscount > 0 & carscount <= 2)
+    //    //        {
+    //    //            Console.WriteLine($"U will receive it after handling {carscount} cars");
+    //    //            carscount -= 1;
+    //    //        }
+    //    //    }
+    //    //}
 
-        public static void HandleOrder()
-        {
-            Console.WriteLine("what do u wanna do?");
-            Console.WriteLine("1 - handle order | 2 - refuse to work | 3 - look up ur storage | 4 - buy details");
-            string ch = Console.ReadLine();
-            if (ch == "1")
-            {
-                Service();
-            }
-            else if (ch == "2")
-            {
-                TakeShtr();
-            }
-            else if (ch == "3")
-            {
-                PrintDetailOnSklad();
-                HandleOrder();
-            }
-            else if (ch == "4")
-            {
-                BayProduct();
-                HandleOrder();
-            }
-            else
-            {
-                Console.WriteLine("input a correct value");
-            }
-        }
+    //    public static void HandleOrder()
+    //    {
+    //        Console.WriteLine("what do u wanna do?");
+    //        Console.WriteLine("1 - handle order | 2 - refuse to work | 3 - look up ur storage | 4 - buy details");
+    //        string ch = Console.ReadLine();
+    //        if (ch == "1")
+    //        {
+    //            Service();
+    //        }
+    //        else if (ch == "2")
+    //        {
+    //            TakeShtr();
+    //        }
+    //        else if (ch == "3")
+    //        {
+    //            PrintDetailOnSklad();
+    //            HandleOrder();
+    //        }
+    //        else if (ch == "4")
+    //        {
+    //            BayProduct();
+    //            HandleOrder();
+    //        }
+    //        else
+    //        {
+    //            Console.WriteLine("input a correct value");
+    //        }
+    //    }
 
-        public static void Service()
-        {
-            bool hasPart = false;
-            if ((detailsGarages.Where(p => p.DetailID == Client.brokenDetail.ID).Count() < 0))
-            {
-                hasPart = false;
-            }
-            else
-            {
-                hasPart = true;
-            }
+    //    public static void Service()
+    //    {
+    //        bool hasPart = false;
+    //        if ((detailsGarages.Where(p => p.DetailID == Client.brokenDetail.ID).Count() < 0))
+    //        {
+    //            hasPart = false;
+    //        }
+    //        else
+    //        {
+    //            hasPart = true;
+    //        }
 
-            if (hasPart)
-            {
-                DetailsGarage SelectToRepair = detailsGarages.FirstOrDefault(d => d.DetailID == Client.brokenDetail.ID);
-                SelectToRepair.Count -= 1;
-                storgs.Balance -= SelectToRepair.Details.Cost;
-                Console.WriteLine("Succesfully repaired");
-                storgs.Balance += 1000;
-                Core.Context.SaveChanges();
-                Console.WriteLine($"Your balance is now: {storgs.Balance}");
-            }
-            else
-            {
-                Console.WriteLine("Theres no such a detail");
-                storgs.Balance -= 1500;
-                Console.WriteLine($"Your balance is now: {storgs.Balance}");
-            }
-        }
+    //        if (hasPart)
+    //        {
+    //            DetailsGarage SelectToRepair = detailsGarages.FirstOrDefault(d => d.DetailID == Client.brokenDetail.ID);
+    //            SelectToRepair.Count -= 1;
+    //            storgs.Balance -= SelectToRepair.Details.Cost;
+    //            Console.WriteLine("Succesfully repaired");
+    //            storgs.Balance += 1000;
+    //            Core.Context.SaveChanges();
+    //            Console.WriteLine($"Your balance is now: {storgs.Balance}");
+    //        }
+    //        else
+    //        {
+    //            Console.WriteLine("Theres no such a detail");
+    //            storgs.Balance -= 1500;
+    //            Console.WriteLine($"Your balance is now: {storgs.Balance}");
+    //        }
+    //    }
 
-        public static void TakeShtr()
-        {
-            Console.WriteLine("Straaaf.");
-            storgs.Balance -= 1000;
-            Console.WriteLine($"Your balance is now: {storgs.Balance}");
-        }
-
-
-        public static class Client
-        {
-            public static List<string> ClientsNames = new List<string> { "Sanya", "Danya", "Dima", "Diana", "NATO", "Apelsin Orechovich", "GVV", "Kovalskiy", "1Cfan", "Nastiks", "Nasosalchik" };
-            public static string name = ClientsNames[rand.Next(ClientsNames.Count())];
-            public static Details brokenDetail = details[rand.Next(details.Count())];
+    //    public static void TakeShtr()
+    //    {
+    //        Console.WriteLine("Straaaf.");
+    //        storgs.Balance -= 1000;
+    //        Console.WriteLine($"Your balance is now: {storgs.Balance}");
+    //    }
 
 
-            public static void NewVisitor()
-            {
-                name = ClientsNames[rand.Next(ClientsNames.Count())];
-                brokenDetail = details[rand.Next(details.Count())];
-                Console.WriteLine("There`s a new client!");
-                Console.WriteLine($"Name: {Client.name} | Broken detail: {Client.brokenDetail.Name}");
+    //    public static class Client
+    //    {
+    //        public static List<string> ClientsNames = new List<string> { "Sanya", "Danya", "Dima", "Diana", "NATO", "Apelsin Orechovich", "GVV", "Kovalskiy", "1Cfan", "Nastiks", "Nasosalchik" };
+    //        public static string name = ClientsNames[rand.Next(ClientsNames.Count())];
+    //        public static Details brokenDetail = details[rand.Next(details.Count())];
 
-            }
-        }
+
+    //        public static void NewVisitor()
+    //        {
+    //            name = ClientsNames[rand.Next(ClientsNames.Count())];
+    //            brokenDetail = details[rand.Next(details.Count())];
+    //            Console.WriteLine("There`s a new client!");
+    //            Console.WriteLine($"Name: {Client.name} | Broken detail: {Client.brokenDetail.Name}");
+
+    //        }
+    //    }
 
 
         //public static class Randoms
@@ -457,5 +471,5 @@ namespace ConsoleApp1
         //    }
         //}
 
-    }
-}
+//    }
+//}

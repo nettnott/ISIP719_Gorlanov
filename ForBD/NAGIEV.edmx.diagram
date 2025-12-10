@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8cafa2050abd468fa52147e2b8d9fc3f" Name="Diagram1">
+        <EntityTypeShape EntityType="PrEghtModel.Order" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrEghtModel.OrderProduct" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrEghtModel.PointOfDelivery" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrEghtModel.Product" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrEghtModel.ProductCar" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrEghtModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrEghtModel.User" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="PrEghtModel.FK_Order_PointOfDelivery" ManuallyRouted="false" />
+        <AssociationConnector Association="PrEghtModel.FK_Order_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PrEghtModel.FK_OrderProduct_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="PrEghtModel.FK_OrderProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="PrEghtModel.FK_ProductCar_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="PrEghtModel.FK_ProductCar_User1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

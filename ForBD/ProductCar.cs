@@ -12,18 +12,14 @@ namespace ForBD
     using System;
     using System.Collections.Generic;
     
-    public partial class Storage
+    public partial class ProductCar
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Storage()
-        {
-            this.DetailsGarage = new HashSet<DetailsGarage>();
-        }
-    
         public int ID { get; set; }
-        public decimal Balance { get; set; }
+        public int ProductID { get; set; }
+        public int UserID { get; set; }
+        public int Count { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetailsGarage> DetailsGarage { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual User User { get; set; }
     }
 }

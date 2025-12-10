@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ISIP719_Gorlanov")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a938b6eb45373fc34a1713dfc6fc9e2577ee1092")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+712d08b3c757a5b58a8a7a3165f2a80869bde6ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("ISIP719_Gorlanov")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ISIP719_Gorlanov")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

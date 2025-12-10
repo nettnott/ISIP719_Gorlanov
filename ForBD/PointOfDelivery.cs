@@ -12,14 +12,19 @@ namespace ForBD
     using System;
     using System.Collections.Generic;
     
-    public partial class DetailsGarage
+    public partial class PointOfDelivery
     {
-        public int ID { get; set; }
-        public int DetailID { get; set; }
-        public int StorageID { get; set; }
-        public int Count { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PointOfDelivery()
+        {
+            this.Order = new HashSet<Order>();
+        }
     
-        public virtual Details Details { get; set; }
-        public virtual Storage Storage { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Adress { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
     }
 }
